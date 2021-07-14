@@ -90,7 +90,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Windows Virtual Des
    New-Item -Type Directory -Path 'C:\Allfiles\Labs\02' -Force
    ```
 
-1. **az140-25-vm0** へのリモート デスクトップ セッション内で、Microsoft Edge を起動し、「FSLogix ダウンロード ページ」(https://aka.ms/fslogix_download)を参照し、FSLogix 圧縮インストール バイナリを **C:\\Allfiles\\Labs\\02** フォルダーにダウンロードし、ファイル エクスプローラーから **x64** サブフォルダーを同じフォルダーに抽出します。
+1. **az140-25-vm0** へのリモート デスクトップ セッション内で、Microsoft Edge を起動し、[FSLogix ダウンロード ページ](https://aka.ms/fslogix_download) を参照し、FSLogix 圧縮インストール バイナリを **C:\\Allfiles\\Labs\\02** フォルダーにダウンロードし、ファイル エクスプローラーから **x64** サブフォルダーを同じフォルダーに抽出します。
 1. **az140-25-vm0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 ウィンドウに切り替え、「**管理者: Windows PowerShell ISE**」 コンソールで、以下を実行して、OneDrive のマシンごとのインストールを実行します。
 
    ```powershell
@@ -108,17 +108,17 @@ Active Directory ドメイン サービス (AD DS) 環境で Windows Virtual Des
    reg add "HKLM\Software\Microsoft\Teams" /v IsWVDEnvironment /t REG_DWORD /d 1 /f
    ```
 
-1. **az140-25-vm0** へのリモート デスクトップセッション内で、Microsoft Edge で、「Microsoft Visual C ++ 再頒布可能パッケージのダウンロード ページ」(https://aka.ms/vs/16/release/vc_redist.x64.exe)を参照し、**VC_redist.x64** を **C:\\Allfiles\\Labs\\02** フォルダーに保存します。
+1. **az140-25-vm0** へのリモート デスクトップセッション内で、Microsoft Edge で、[Microsoft Visual C ++ 再頒布可能パッケージのダウンロード ページ](https://aka.ms/vs/16/release/vc_redist.x64.exe) を参照し、**VC_redist.x64** を **C:\\Allfiles\\Labs\\02** フォルダーに保存します。
 1. **az140-25-vm0** へのリモート デスクトップ セッション内で、「**管理者: C:\windows\system32\cmd.exe**」 ウィンドウで、コマンド プロンプトから次のコマンドを実行して、Microsoft Visual C ++ 再頒布可能パッケージのインストールを実行します。
 
    ```cmd
    C:\Allfiles\Labs\02\vc_redist.x64.exe /install /passive /norestart /log C:\Allfiles\Labs\02\vc_redist.log
    ```
 
-1. **az140-25-vm0** へのリモート デスクトップ セッション内で、Microsoft Edge ウィンドウに切り替え、「リモート デスクトップ WebRTC リダイレクター サービスのダウンロード ページ」(https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE4AQBt)を参照して、インストーラー パッケージを **C:\\Allfiles\\Labs\\02** フォルダーに保存します。
+1. **az140-25-vm0** へのリモート デスクトップ セッション内で、Microsoft Edge ウィンドウに切り替え、[リモート デスクトップ WebRTC リダイレクター サービスのダウンロード ページ](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE4AQBt)を参照して、インストーラー パッケージを **C:\\Allfiles\\Labs\\02** フォルダーに保存します。
 1. **az140-25-vm0** へのリモート デスクトップセッション内で、ファイル エクスプローラーを起動し、**C:\\Allfiles\\Labs\\02** フォルダーに移動し、新しくダウンロードしたインストーラーをダブルクリックして、既定の設定でインストールを実行します。
-1. **az140-25-vm0** へのリモート デスクトップ セッション内で、Microsoft Edge で、以下のタイトルのドキュメント ページを参照します。
-Teams デスクトップアプリを VM」(https://docs.microsoft.com/ja-jp/microsoftteams/teams-for-vdi#deploy-the-teams-desktop-app-to-the-vm) に展開し、**64 ビット バージョン**のリンクをクリックして、プロンプトが表示されたら、**Teams_windows_x64.msi** ファイルを **C:\\Allfiles\\Labs\\02** フォルダーに保存します。
+1. **az140-25-vm0** へのリモート デスクトップ セッション内で、Microsoft Edge で、以下のタイトルのドキュメント ページを参照します。[
+Teams デスクトップアプリを VM](https://docs.microsoft.com/ja-jp/microsoftteams/teams-for-vdi#deploy-the-teams-desktop-app-to-the-vm) に展開し、**64 ビット バージョン**のリンクをクリックして、プロンプトが表示されたら、**Teams_windows_x64.msi** ファイルを **C:\\Allfiles\\Labs\\02** フォルダーに保存します。
 1. **az140-25-vm0** へのリモート デスクトップ セッション内で、「**管理者: C:\windows\system32\cmd.exe**」 ウィンドウで、コマンド プロンプトから次のコマンドを実行して、Microsoft Teams のマシンごとのインストールを実行します。
 
    ```cmd
@@ -136,7 +136,7 @@ Teams デスクトップアプリを VM」(https://docs.microsoft.com/ja-jp/micr
 
    > **注**: インストールが完了するまで待ちます。2 分間程度かかる場合があります。
 
-   > **注**: 多言語環境で操作する場合は、言語パックのインストールが必要になる場合があります。この手順の詳細については、Microsoft Docs の記事「「Windows 10 マルチセッションイメージへの言語パックの追加」(https://docs.microsoft.com/ja-jp/azure/virtual-desktop/language-packs)」を参照してください。
+   > **注**: 多言語環境で操作する場合は、言語パックのインストールが必要になる場合があります。この手順の詳細については、Microsoft Docs の記事「[Windows 10 マルチセッションイメージへの言語パックの追加](https://docs.microsoft.com/ja-jp/azure/virtual-desktop/language-packs)」 を参照してください。
 
    > **注**: 次に、Windows の自動更新を無効にし、ストレージ センサーを無効にし、タイムゾーンのリダイレクトを構成し、テレメトリの収集を構成します。一般に、最初に現在のすべての更新を最初に適用する必要があります。このラボでは、ラボの期間を最小限に抑えるために、この手順をスキップします。
 
@@ -302,7 +302,7 @@ Teams デスクトップアプリを VM」(https://docs.microsoft.com/ja-jp/micr
 
 1. ラボでプロビジョニングされた Azure VM を停止および割り当て解除する
 
->** 注**: この演習では、このラボでプロビジョニングした Azure VM を割り当て解除し、対応するコンピューティング料金を最小化します
+>**注**: この演習では、このラボでプロビジョニングした Azure VM を割り当て解除し、対応するコンピューティング料金を最小化します
 
 #### タスク 1: ラボでプロビジョニングされた Azure VM を割り当て解除する
 

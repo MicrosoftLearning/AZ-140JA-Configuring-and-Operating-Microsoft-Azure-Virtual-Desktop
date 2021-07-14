@@ -4,7 +4,7 @@ lab:
     module: 'モジュール 1: WVD アーキテクチャを計画する'
 ---
 
-# ラボ - Azure Windows Virtual Desktop (AD DS) のデプロイを準備する。
+# ラボ - Azure Windows Virtual Desktop (AD DS) のデプロイを準備する
 # 受講生用ラボ マニュアル
 
 ## ラボの依存関係
@@ -12,7 +12,7 @@ lab:
 - このラボで使用する Azure サブスクリプション。
 - このラボで使用する Azure サブスクリプション内で所有者または共同作成者のロールを持つ Microsoft アカウントまたは Azure AD アカウント、この Azure サブスクリプションに関連付けられた Azure AD テナント内でグローバル管理者ロールを持つMicrosoft アカウントまたは Azure AD アカウント。
 
-> **注**: このコースを作成している時点で、Windows Virtual Desktop に対する MSIX アプリのアタッチ機能はパブリック プレビュー段階です。このコースに含まれる MSIX アプリのアタッチを使用するラボを実行する場合は、サブスクリプションで MSIX アプリのアタッチを有効にするために、「オンライン フォーム」(https://aka.ms/enablemsixappattach)を通して、要求を送信する必要があります。要求の承認と処理には、最大 24 営業時間かかることがあります。要求が受入および完了すると、メール確認が送信されます。
+> **注**: このコースを作成している時点で、Windows Virtual Desktop に対する MSIX アプリのアタッチ機能はパブリック プレビュー段階です。このコースに含まれる MSIX アプリのアタッチを使用するラボを実行する場合は、サブスクリプションで MSIX アプリのアタッチを有効にするために、「オンライン フォーム」 (https://aka.ms/enablemsixappattach) を通して、要求を送信する必要があります。要求の承認と処理には、最大 24 営業時間かかることがあります。要求が受入および完了すると、メール確認が送信されます。
 
 ## 推定所要時間
 
@@ -142,7 +142,7 @@ Active Directory ドメイン サービス (AD DS) 環境での Azure Windows �
    ```
 
 1. Azure portal で、**Cloud Shell** ウィンドウを閉じます。
-1. ラボ コンピューターから、同じ Web ブラウザー ウィンドウで、別の Web ブラウザー タブを開き、[「新しいWindows VM の作成」 という名前のクイック スタート テンプレートに移動して、新しい AD フォレスト、ドメイン、および DC を作成します](https://github.com/Azure/azure-quickstart-templates/tree/master/active-directory-new-domain)。 
+1. ラボ コンピューターから、同じ Web ブラウザー ウィンドウで、別の Web ブラウザー タブを開き、[「新しい Windows VM の作成」 という名前のクイック スタート テンプレートに移動して、新しい AD フォレスト、ドメイン、および DC を作成します](https://github.com/Azure/azure-quickstart-templates/tree/master/active-directory-new-domain)。 
 1. 「**新しい Windows VM を作成し、新しい AD フォレスト、ドメイン、DC を作成する**」 ページで、「**Azure に配置する**」 を選択します。これにより、ブラウザーが Azure portal の 「**新しい AD フォレストで Azure VM を作成する**」 ブレードに自動的にリダイレクトされます。
 1. 「**新しい AD フォレストで Azure VM を作成する**」 ブレードで、「**パラメーターの編集**」 を選択します。
 1. 「**パラメーターの編集**」 ブレードで、「**ロード ファイル**」 を選択し、「**開く**」 ダイアログ ボックスで、「**\\\\AZ-140\\AllFiles\\Labs\\01\\az140-11_azuredeploydc11.parameters.json**」 を選択し、「**開く**」 を選択してから、「**保存**」 を選択します。 

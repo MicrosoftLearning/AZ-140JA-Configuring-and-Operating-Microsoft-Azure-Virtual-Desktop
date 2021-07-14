@@ -145,7 +145,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Windows Virtual Des
 
    >**注**: 出力には、Webhook URI、Log Analytics ワークスペース ID、および自動スケール ソリューションの一部である Azure Logic App をプロビジョニングするときに提供する必要のある対応する主キー値が含まれます。
 
-1. Azure Automation アカウントの構成を確認するには、**az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge を起動して、「Azure portal」(https://portal.azure.com) に移動します。プロンプトが表示されたら、このラボで使用しているサブスクリプションで所有者の役割を持つユーザーアカウントの資格情報を使用してサインインします。
+1. Azure Automation アカウントの構成を確認するには、**az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge を起動して、[Azure portal](https://portal.azure.com) に移動します。プロンプトが表示されたら、このラボで使用しているサブスクリプションで所有者の役割を持つユーザーアカウントの資格情報を使用してサインインします。
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示している Microsoft Edge ウィンドウで、**Automationアカウント**を検索して選択し、**Automationアカウント** ブレードで、新しくプロビジョニングされたAzure Automation アカウント (名前は **az140-automation-51** プレフィックスで始まる) を表すエントリを選択します。
 1. 「Automation Account」 ブレードの左側の垂直メニューの **「Process Automation」** セクションで、**「Runbooks」** を選択し、Runbook のリストで **WVDAutoScaleRunbookARMBased** Runbook の存在を確認します。
 1. 「Automation Account」 ブレードの左側の垂直メニューの **「アカウント設定」** セクションで、**「アカウントとして実行」** を選択し、右側のアカウントのリストで、**「Azure 実行アカウント」** の横にある **「+ 作成」** をクリックします。
@@ -202,7 +202,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Windows Virtual Des
    $WebhookURIAutoVar = Get-AzAutomationVariable -Name 'WebhookURIARMBased' -ResourceGroupName $AutoAccount.ResourceGroupName -AutomationAccountName    $AutoAccount.AutomationAccountName
    ```
 
-   >** 注**: パラメーターの値は、自動スケール動作を加速することを目的としています。実稼働環境では、特定の要件に一致するように調整する必要があります。
+   >**注**: パラメーターの値は、自動スケール動作を加速することを目的としています。実稼働環境では、特定の要件に一致するように調整する必要があります。
 
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインを開き、次のスクリプトを貼り付けて実行し、自動スケール ソリューションの一部である Azure Logic アプリを作成します。
 
@@ -250,7 +250,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Windows Virtual Des
 #### タスク 1: Windows Virtual Desktop セッションホストの自動スケールを確認する
 
 1. Windows Virtual Desktop セッション ホストの自動スケールを確認するには、**az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示する Microsoft Edge ウィンドウで、**仮想マシン**を検索して選択し、**「仮想マシン」** ブレードで、**az140-21-RG** リソース グループ内の 3 つの Azure VM のステータスを確認します。
-1. 3 つの Azure VM のうち 2 つが割り当て解除の過程にあるか、すでに**停止 (割り当て解除)**されていることを確認します。
+1. 3 つの Azure VM のうち 2 つが割り当て解除の過程にあるか、すでに**停止 (割り当て解除)** されていることを確認します。
 
    >**注**: 自動スケールが機能していることを確認したらすぐに、Azure Logic アプリを無効にして、対応する料金を最小限に抑える必要があります。
 
@@ -263,7 +263,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Windows Virtual Des
 
 #### タスク 2: Windows Log Analytics を使用して Azure Virtual Desktop イベントを追跡する
 
->** 注**: 自動スケールやその他の Windows Virtual Desktop イベントを分析するには、Log Analytics を使用できます。
+>**注**: 自動スケールやその他の Windows Virtual Desktop イベントを分析するには、Log Analytics を使用できます。
 
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示している Microsoft Edge ウィンドウで、**Log Analytics ワークスペース**を検索して選択し、「Log Analytics ワークスペース」 ブレードで、このラボで使用されている Azure Log Analytics ワークスペースを表すエントリを選択します (名前は **az140-workspace-51** プレフィックスで始まります)。
 1. 「Log Analytics ワークスペース」 ブレードの左側の垂直メニューの **「全般」** セクションで、**「ログ」** をクリックし、**「Log Analytics へようこそ」** ペインで **「はじめに」** をクリックします。

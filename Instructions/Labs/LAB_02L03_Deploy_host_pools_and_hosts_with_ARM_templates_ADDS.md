@@ -72,7 +72,7 @@ Azure Resource Manager テンプレートを使用して、Windows Virtual Deskt
    (Get-ADUser -Filter "sAMAccountName -eq 'student'").userPrincipalName
    ```
 
-1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE」** スクリプト ペインで、以下を実行して、このラボの後半で個人用デスクトップの割り当てをテストするために使用する **ADATUM\\aduser7** および **ADATUM\\aduser8 **アカウントのユーザー プリンシパル名を特定します。
+1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE」** スクリプト ペインで、以下を実行して、このラボの後半で個人用デスクトップの割り当てをテストするために使用する **ADATUM\\aduser7** および **ADATUM\\aduser8** アカウントのユーザー プリンシパル名を特定します。
 
    ```powershell
    (Get-ADUser -Filter "sAMAccountName -eq 'aduser7'").userPrincipalName
@@ -91,7 +91,7 @@ Azure Resource Manager テンプレートを使用して、Windows Virtual Deskt
 
    > **注**: ホストがプールに参加することを承認するには、登録トークンが必要です。トークンの有効期限の値は、現在の日時から 1 時間から 1 か月の間である必要があります。
 
-1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge を起動して、「Azure portal」(https://portal.azure.com) に移動します。プロンプトが表示されたら、このラボで使用しているサブスクリプションで所有者の役割を持つユーザーアカウントの資格情報を使用してサインインします。
+1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge を起動して、[Azure portal](https://portal.azure.com) に移動します。プロンプトが表示されたら、このラボで使用しているサブスクリプションで所有者の役割を持つユーザーアカウントの資格情報を使用してサインインします。
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal で、Azure portal ページの上部にある **「リソース、サービス、およびドキュメントの検索」** テキストボックスを使用して、**仮想ネットワーク**を検索して移動し、**「仮想ネットワーク」** ブレードで **「az140-adds-vnet11」** を選択します。 
 1. **「az140-adds-vnet11」** ブレードで、**「サブネット」** を選択し、**「サブネット」** ブレードで、**「+ サブネット」** を選択し、**「サブネットの追加」** ブレードで、次の設定を指定し (他のすべての設定はデフォルト値のままにします)、**「保存」** をクリックします。
 
@@ -108,8 +108,8 @@ Azure Resource Manager テンプレートを使用して、Windows Virtual Deskt
 
 #### タスク 2: Azure Resource Manager テンプレートを使用して、Azure Windows Virtual Desktop ホスト プールと ホストをデプロイする
 
-1. ラボのコンピューターから Web ブラウザーを起動し、 「Azure portal」(https://portal.azure.com) に移動し、このラボで使用するサブスクリプションの所有者の役割を持つユーザーアカウントの認証情報を提供してサインインします。
-1. ラボ コンピューターから、同じ Web ブラウザー ウィンドウで、別の Web ブラウザー タブを開き、GitHub Azure RDS テンプレート リポジトリ ページの 「ARM テンプレートに移動して、新しい Windows Virtual Desktop ホスト プールを作成およびプロビジョニングします」(https://github.com/Azure/RDS-Templates/tree/master/ARM-wvd-templates/CreateAndProvisionHostPool)。 
+1. ラボのコンピューターから Web ブラウザーを起動し、 [Azure portal](https://portal.azure.com) に移動し、このラボで使用するサブスクリプションの所有者の役割を持つユーザーアカウントの認証情報を提供してサインインします。
+1. ラボ コンピューターから、同じ Web ブラウザー ウィンドウで、別の Web ブラウザー タブを開き、GitHub Azure RDS テンプレート リポジトリ ページの [ARM テンプレートに移動して、新しい Windows Virtual Desktop ホスト プールを作成およびプロビジョニングします](https://github.com/Azure/RDS-Templates/tree/master/ARM-wvd-templates/CreateAndProvisionHostPool)。 
 1. **「新しい Windows Virtual Desktop ホスト プールを作成してプロビジョニングするための ARM テンプレート」** ページで、**「Azure にデプロイ」** を選択します。これにより、ブラウザーが Azure portal の **「カスタム デプロイ」** ブレードに自動的にリダイレクトされます。
 1. **「カスタム デプロイ」** ブレードで、**「パラメーターの編集」** を選択します。
 1. 「**パラメーターの編集**」 ブレードで、「**ロード ファイル**」 を選択し、「**開く**」 ダイアログ ボックスで、「**\\\\AZ-140\\AllFiles\\Labs\\02\\az140-23_azuredeployhp23.parameters.json**」 を選択し、「**開く**」 を選択してから、「**保存**」 を選択します。 
@@ -163,7 +163,7 @@ Azure Resource Manager テンプレートを使用して、Windows Virtual Deskt
 
 #### タスク 5: Azure Resource Manager テンプレートを使用して、既存の Azure Windows Virtual Desktop ホスト プールにホストを追加する
 
-1. ラボ コンピューターから、同じ Web ブラウザー ウィンドウで、別の Web ブラウザー タブを開き、GitHub Azure RDS テンプレート リポジトリ ページの 「ARM テンプレートに移動して、セッションホストを既存の Windows Virtual Desktop ホストプールに追加します」(https://github.com/Azure/RDS-Templates/tree/master/ARM-wvd-templates/AddVirtualMachinesToHostPool)。 
+1. ラボ コンピューターから、同じ Web ブラウザー ウィンドウで、別の Web ブラウザー タブを開き、GitHub Azure RDS テンプレート リポジトリ ページの [ARM テンプレートに移動して、セッションホストを既存の Windows Virtual Desktop ホストプールに追加します](https://github.com/Azure/RDS-Templates/tree/master/ARM-wvd-templates/AddVirtualMachinesToHostPool)。 
 1. **「セッションホストを既存の Windows Virtual Desktop ホストプールに追加するための ARM テンプレート」** ページで、**「Azure にデプロイ」** を選択します。これにより、ブラウザーが Azure portal の **「カスタム デプロイ」** ブレードに自動的にリダイレクトされます。
 1. **「カスタム デプロイ」** ブレードで、**「パラメーターの編集」** を選択します。
 1. 「**パラメーターの編集**」 ブレードで、「**ロード ファイル**」 を選択し、「**開く**」 ダイアログ ボックスで、「**\\\\AZ-140\\AllFiles\\Labs\\02\\az140-23_azuremodifyhp23.parameters.json**」 を選択し、「**開く**」 を選択してから、「**保存**」 を選択します。 
@@ -216,7 +216,7 @@ Azure Resource Manager テンプレートを使用して、Windows Virtual Deskt
 1. **az140-cl-vm11** へのリモート デスクトップ セッション内で、**「スタート」** をクリックし、**「スタート」** メニューで、**リモート デスクトップ** クライアント アプリを選択します。
 1. **リモート デスクトップ** クライアント ウィンドウで、**「サブスクライブ」** を選択し、プロンプトが表示されたら、**aduser7** 資格情報を使用してサインインします (userPrincipalName と、パスワードとして **Pa55w.rd1234** を指定します)。
 
-   > **注**: または、「**リモート デスクトップ** クライアント」 ウィンドウで **「URL でサブスクライブ」** を選択し、**「ワークスペースのサブスクライブ」** ペインで **「電子メール」 または 「ワークスペース URL」** に「**https://rdweb.wvd.microsoft.com/api/arm/feeddiscovery**」と入力して、**「次へ」** を選択します。プロンプトが表示されたら、**aduser7** 資格情報を使用してサインインします (userPrincipalName 属性をユーザー名として使用し、**Pa55w.rd1234** をパスワードとして使用します)。 
+   > **注**: または、「**リモート デスクトップ** クライアント」 ウィンドウで **「URL でサブスクライブ」** を選択し、**「ワークスペースのサブスクライブ」** ペインで **「電子メール」 または 「ワークスペース URL」** に 「**https://rdweb.wvd.microsoft.com/api/arm/feeddiscovery**」 と入力して、**「次へ」** を選択します。プロンプトが表示されたら、**aduser7** 資格情報を使用してサインインします (userPrincipalName 属性をユーザー名として使用し、**Pa55w.rd1234** をパスワードとして使用します)。 
 
 1. **「リモート デスクトップ」** ページで、**SessionDesktop** アイコンをダブルクリックし、資格情報の入力を求められたら、**Pa55w.rd1234** と入力し、**「Remember me」** チェックボックスを選択して、**「OK」** をクリックします。
 1. **aduser7** がリモート デスクトップ経由でホストに正常にサインインしたことを確認します。
@@ -255,7 +255,7 @@ Azure Resource Manager テンプレートを使用して、Windows Virtual Deskt
 
 1. ラボでプロビジョニングされた Azure VM を停止および割り当て解除する
 
->** 注**: この演習では、このラボでプロビジョニングした Azure VM を割り当て解除し、対応するコンピューティング料金を最小化します
+>**注**: この演習では、このラボでプロビジョニングした Azure VM を割り当て解除し、対応するコンピューティング料金を最小化します
 
 #### タスク 1: ラボでプロビジョニングされた Azure VM を割り当て解除する
 

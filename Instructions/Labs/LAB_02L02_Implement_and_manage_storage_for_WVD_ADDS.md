@@ -55,7 +55,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境で Windows
    |ユーザー名|**ADATUM\\Student**|
    |パスワード|**Pa55w.rd1234**|
 
-1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge を起動して、「Azure portal」(https://portal.azure.com) に移動します。プロンプトが表示されたら、このラボで使用しているサブスクリプションで所有者の役割を持つユーザーアカウントの資格情報を使用してサインインします。
+1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge を起動して、[Azure portal](https://portal.azure.com) に移動します。プロンプトが表示されたら、このラボで使用しているサブスクリプションで所有者の役割を持つユーザーアカウントの資格情報を使用してサインインします。
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示する Microsoft Edge で **ストレージ アカウント** を検索して選択し、**「ストレージ アカウント」** ブレードで **「+ 追加」** を選択します。
 1. 「**ストレージ アカウントの作成**」 ブレードの 「**基本**」 タブで、次の設定を指定します (他の設定はデフォルト値のままにします)。
 
@@ -88,7 +88,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境で Windows
 
 #### タスク 3: Azure Storage アカウントに対する AD DS 認証を有効にする 
 
-1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge ウィンドウで別のタブを開き、「Azure Files サンプルの GitHub リポジトリ」(https://github.com/Azure-Samples/azure-files-samples/releases)に移動し、圧縮された **AzFilesHybid.zip** PowerShell モジュールの最新バージョンをダウンロードし、そのコンテンツを **C:\\Allfiles\\Labs\\02** フォルダーに抽出します (必要に応じてフォルダーを作成します)。
+1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge ウィンドウで別のタブを開き、[Azure Files サンプルの GitHub リポジトリ](https://github.com/Azure-Samples/azure-files-samples/releases)に移動し、圧縮された **AzFilesHybid.zip** PowerShell モジュールの最新バージョンをダウンロードし、そのコンテンツを **C:\\Allfiles\\Labs\\02** フォルダーに抽出します (必要に応じてフォルダーを作成します)。
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、管理者として **Windows PowerShell ISE** を起動し、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次のコマンドを実行して、値が **3** の **Zone.Identifier** 代替データストリームを削除します。これは、インターネットからダウンロードされたことを示します。
 
    ```powershell
@@ -209,4 +209,4 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境で Windows
    icacls Z: /remove 'Builtin\Users'
    ```
 
-   >** 注**: または、ファイル エクスプローラーを使用してアクセス許可を設定することもできます。
+   >**注**: または、ファイル エクスプローラーを使用してアクセス許可を設定することもできます。

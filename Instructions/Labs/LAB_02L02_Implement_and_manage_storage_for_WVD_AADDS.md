@@ -55,7 +55,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境で Windows
    |ユーザー名|**ADATUM\\aadadmin1**|
    |パスワード|**Pa55w.rd1234**|
 
-1. リモート デスクトップ内で **az140-cl-vm11a** Azure VM に移動し、Microsoft Edge を起動し、「Azure portal」(https://portal.azure.com) に移動し、パスワードとして **Pa55w.rd1234** を使用して **aadadmin1** ユーザー アカウントのユーザー プリンシパル名を指定してサインインします。
+1. リモート デスクトップ内で **az140-cl-vm11a** Azure VM に移動し、Microsoft Edge を起動し、[Azure portal](https://portal.azure.com) に移動し、パスワードとして **Pa55w.rd1234** を使用して **aadadmin1** ユーザー アカウントのユーザー プリンシパル名を指定してサインインします。
 
    >**注**: aadadmin1 アカウントのユーザープリンシパル名 (UPN) 属性を特定するには、Active Directory ユーザーとコンピューター コンソールからプロパティ ダイアログ ボックスを確認するか、ラボ コンピューターに戻って、Azure portal の Azure AD テナント ブレードからプロパティを確認します。
 

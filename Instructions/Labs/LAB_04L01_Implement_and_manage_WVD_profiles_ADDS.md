@@ -65,7 +65,7 @@ Active Directory ドメイン サービス (AD DS) 環境に Windows 仮想デ�
    Restart-Computer -ComputerName $servers -Force
    ```
 
-1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge を起動して、「Azure portal」(https://portal.azure.com) に移動します。プロンプトが表示されたら、このラボで使用しているサブスクリプションで所有者の役割を持つユーザーアカウントの資格情報を使用してサインインします。
+1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge を起動して、[Azure portal](https://portal.azure.com) に移動します。プロンプトが表示されたら、このラボで使用しているサブスクリプションで所有者の役割を持つユーザーアカウントの資格情報を使用してサインインします。
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示している Microsoft Edge ウィンドウで、**「仮想ネットワーク」** ブレードを検索して選択し、**「仮想ネットワーク」** ブレードから **az140-21-p1-0** を選択します。
 1. **「az140-21-p1-0」** ブレードで、**「接続」** を選択し、ドロップダウン メニューで **「RDP」** を選択し、「**az140-21-p1-0 \| 接続」** ブレードの **「IP アドレス」** ドロップダウン リストで、**「パブリック IP アドレス」** エントリ、**「RDP ファイルをダウンロード」** を選択してから、**「開く」** を選択します。
 1. プロンプトが表示されたら、次の資格情報でサインインします。
@@ -75,7 +75,7 @@ Active Directory ドメイン サービス (AD DS) 環境に Windows 仮想デ�
    |ユーザー名|**ADATUM\Student**|
    |パスワード|**Pa55w.rd1234**|
 
-1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、Microsoft Edge を起動し、「FSLogix ダウンロード ページ」(https://aka.ms/fslogix_download)を参照し、FSLogix 圧縮インストール バイナリをダウンロードして、**C:\\Allfiles\\Labs\\04** フォルダー (必要に応じて、フォルダ－を作成する) に抽出し、**x64\\Release** サブフォルダーに移動し、**FSLogixAppsSetup.exe** ファイルをダブルクリックして、**Microsoft FSLogix Apps セットアップ** ウィザードを実行し、デフォルト設定で Microsoft FSLogix Appsをインストールします。
+1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、Microsoft Edge を起動し、[FSLogix ダウンロード ページ](https://aka.ms/fslogix_download)を参照し、FSLogix 圧縮インストール バイナリをダウンロードして、**C:\\Allfiles\\Labs\\04** フォルダー (必要に応じて、フォルダ－を作成する) に抽出し、**x64\\Release** サブフォルダーに移動し、**FSLogixAppsSetup.exe** ファイルをダブルクリックして、**Microsoft FSLogix Apps セットアップ** ウィザードを実行し、デフォルト設定で Microsoft FSLogix Appsをインストールします。
 1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、管理者として **Windows PowerShell ISE** を起動し、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、以下を実行して PowerShellGet モジュールの最新バージョンをインストールします (確認を求められたら **「はい」** を選択します)。
 
    ```powershell
