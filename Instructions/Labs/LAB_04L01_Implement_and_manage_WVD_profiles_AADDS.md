@@ -1,4 +1,4 @@
-﻿---
+---
 lab:
     title: 'ラボ: Windows Virtual Desktop プロファイル (Azure AD DS) を実装および管理する'
     module: 'モジュール 4: ユーザーの環境とアプリを管理する'
