@@ -1,4 +1,4 @@
-﻿---
+---
 lab:
     title: 'ラボ: WVD (AD DS) 用のストレージを実装および管理する'
     module: 'モジュール 2: WVD インフラストラクチャを実装する'
@@ -209,4 +209,8 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境で Windows
    icacls Z: /remove 'Builtin\Users'
    ```
 
+<<<<<<< HEAD
    >**注**: または、ファイル エクスプローラーを使用してアクセス許可を設定することもできます。
+=======
+   >** 注**: または、ファイル エクスプローラーを使用してアクセス許可を設定することもできます。
+>>>>>>> cada21a9746414b2afc4e8b3fb4d7aa0b88143cb
