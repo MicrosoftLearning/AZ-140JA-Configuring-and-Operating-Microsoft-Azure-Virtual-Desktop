@@ -1,4 +1,4 @@
-﻿---
+---
 lab:
     title: 'ラボ: Windows Virtual Desktop アプリケーション (AD DS) のパッケージ化'
     module: 'モジュール 4: ユーザーの環境とアプリを管理する'
