@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: ホスト プールに自動スケールを実装する (AD DS)'
     module: 'モジュール: WVD インフラストラクチャを監視および保守する'
@@ -11,8 +11,8 @@ lab:
 
 - このラボで使用する Azure サブスクリプション。
 - このラボで使用する Azure サブスクリプション内で所有者または共同作成者のロールを持つ Microsoft アカウントまたは Azure AD アカウント、この Azure サブスクリプションに関連付けられた Azure AD テナント内でグローバル管理者ロールを持つMicrosoft アカウントまたは Azure AD アカウント。
-- 実施するラボ **Azure Windows Virtual Desktop (AD DS) のデプロイを準備する**
-- 実施するラボ **Azure portal (AD DS) を使用してホスト プールとセッション ホストをデプロイする**
+- 実施するラボ - **Azure Virtual Desktop (AD DS) のデプロイを準備する**
+- 実施するラボ - **Azure portal (AD DS) を使用してホスト プールとセッション ホストをデプロイする**
 
 ## 推定所要時間
 
@@ -20,34 +20,34 @@ lab:
 
 ## ラボ シナリオ
 
-Active Directory ドメイン サービス (AD DS) 環境で Windows Virtual Desktop セッション ホストの自動スケーリングを構成する必要があります。
+Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Desktop セッション ホストの自動スケーリングを構成する必要があります。
 
 ## 目標
   
-このラボを終了すると、以下ができるようになります。
+このラボを終了すると、下記ができるようになります。
 
-- Windows Virtual Desktop セッションホストの自動スケールを構成する
-- Windows Virtual Desktop セッションホストの自動スケールを確認する
+- Azure Virtual Desktop セッションホストの自動スケールを構成する
+- Azure Virtual Desktop セッションホストの自動スケールを確認する
 
 ## ラボ ファイル
 
-- None
+- なし
 
-## 説明
+## 手順
 
-### 演習 1: Windows Virtual Desktop セッションホストの自動スケールを構成する
+### 演習 1Azure Virtual Desktop セッションホストの自動スケールを構成する
 
-このエクササイズの主なタスクは次のとおりです。
+この演習の主なタスクは次のとおりです:
 
-1. Windows Virtual Desktop セッション ホストの自動スケールを準備する
+1. Azure Virtual Desktop セッション ホストの自動スケールを準備する
 1. Azure Automation アカウントを作成および構成する
 1. Azure Logic App を作成する
 
-#### タスク 1: Windows Virtual Desktop セッション ホストの自動スケールを準備する
+#### タスク 1: Azure Virtual Desktop セッション ホストの自動スケールを準備する
 
-1. ラボのコンピューターから Web ブラウザーを起動し、 [Azure portal](https://portal.azure.com) に移動し、このラボで使用するサブスクリプションの所有者の役割を持つユーザーアカウントの認証情報を提供してサインインします。
+1. ラボ コンピューターから、Web ブラウザーを起動し、[Azure portal](https://portal.azure.com) に移動し、このラボで使用するサブスクリプションの所有者ロールを持つユーザー アカウントの資格情報を指定してサインインします。
 1. ラボ コンピューターにの Azure portal を表示している Web ブラウザーの画面で、**Cloud Shell** ペイン内の **PowerShell** シェル セッションを開きます。
-1. Cloud Shell ペインの PowerShell セッションから、以下を実行して、このラボで使用する Azure VM をホストする Windows Virtual Desktop セッションを開始します。
+1. Cloud Shell ペインの PowerShell セッションから、以下を実行して、このラボで使用する Azure VM をホストする Azure Virtual Desktop セッションを開始します。
 
    ```powershell
    Get-AzVM -ResourceGroup 'az140-21-RG' | Start-AzVM -NoWait
@@ -57,10 +57,10 @@ Active Directory ドメイン サービス (AD DS) 環境で Windows Virtual Des
 
 #### タスク 2: Azure Automation アカウントを作成および構成する
 
-1. ラボのコンピューターから Web ブラウザーを起動し、 [Azure portal](https://portal.azure.com) に移動し、このラボで使用するサブスクリプションの所有者の役割を持つユーザーアカウントの認証情報を提供してサインインします。
-1. Azure portalで、**仮想マシン** を検索して選択し、 **「Virtual Machines」** ブレードで、**az140-vm11** を選択します 。
+1. ラボ コンピューターから、Web ブラウザーを起動し、[Azure portal](https://portal.azure.com) に移動し、このラボで使用するサブスクリプションの所有者ロールを持つユーザー アカウントの資格情報を指定してサインインします。
+1. Azure portalで、「**仮想マシン**」を検索して選択し、**「Virtual Machines」** ブレードで、**az140-vm11** を選択します。
 1. **「az140-dc-vm11」** ブレードで、**「接続」** を選択し、ドロップダウン メニューで **「RDP」** を選択し、**「az140-vm11 \| 接続**」 ブレードの 「RDP」 タブの **「IP アドレス」** ドロップダウン リストで、**「ロード バランサ―の DNS 名」** エントリ、次に **「RDP ファイルをダウンロード」** を選択します。
-1. プロンプトが表示されたら、次の資格情報でサインインします。
+1. プロンプトが表示されたら、次の認証情報を入力します。
 
    |設定|値|
    |---|---|
@@ -78,7 +78,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Windows Virtual Des
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次のコマンドを実行して、自動スケール リューションの一部である Azure Automation アカウントの作成に使用する PowerShell スクリプトをダウンロードします。
 
    ```powershell
-   「Net.ServicePointManager」::SecurityProtocol = 「Net.SecurityProtocolType」::Tls12
+   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
    $labFilesfolder = 'C:\Allfiles\Labs\05'
    New-Item -ItemType Directory -Path $labFilesfolder -Force
    Set-Location -Path $labFilesfolder
@@ -135,11 +135,11 @@ Active Directory ドメイン サービス (AD DS) 環境で Windows Virtual Des
      "WorkspaceName" = $workspaceName
    }
 
-   「Net.ServicePointManager」::SecurityProtocol = 「Net.SecurityProtocolType」::Tls12
+   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
    .\CreateOrUpdateAzAutoAccount.ps1 @Params
    ```
 
-   >**注**: スクリプトが完了するのを待ちます。10 分間程度かかる場合があります。
+   >**注**: スクリプトが完了するのを待ちます。これにはおよそ 10 分かかる場合があります。
 
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、スクリプトの出力を確認します。 
 
@@ -234,23 +234,23 @@ Active Directory ドメイン サービス (AD DS) 環境で Windows Virtual Des
    .\CreateOrUpdateAzLogicApp.ps1 @Params
    ```
 
-   >**注**: スクリプトが完了するのを待ちます。2 分間程度かかる場合があります。
+   >**注**: スクリプトが完了するのを待ちます。これにはおよそ 2 分かかる場合があります。
 
 1. Azure Logic アプリの構成を確認するには、**az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示する Microsoft Edge ウィンドウに切り替え、**Logic Apps** を検索して選択し、**「Logic Apps」** ブレードで、**az140-21-hp1_Autoscale_Scheduler** という名前の新しくプロビジョニングされた Azure Logic アプリを表すエントリを選択します。
 1. 「**az140-21-hp1_Autoscale_Scheduler**」 ブレードの左側にある垂直メニューの 「**開発ツール**」 セクションで、「**ロジック アプリ デザイナー**」 をクリックします。 
 1. 「デザイナー」 ペインで、「**繰り返し**」というラベルの付いた長方形をクリックし、自動スケールの必要性が評価される頻度を制御するために使用できることに注意してください。 
 
-### 演習 2: Windows Virtual Desktop セッションホストの自動スケールを確認およびレビューする
+### 演習 2Azure Virtual Desktop セッションホストの自動スケールを確認およびレビューする
 
-このエクササイズの主なタスクは次のとおりです。
+この演習の主なタスクは次のとおりです:
 
-1. Windows Virtual Desktop セッションホストの自動スケールを確認する
-1. Windows Log Analytics を使用して Azure Virtual Desktop イベントを追跡する
+1. Azure Virtual Desktop セッションホストの自動スケールを確認する
+1. Azure Log Analytics を使用して Azure Virtual Desktop イベントを追跡する
 
-#### タスク 1: Windows Virtual Desktop セッションホストの自動スケールを確認する
+#### タスク 1: Azure Virtual Desktop セッションホストの自動スケールを確認する
 
-1. Windows Virtual Desktop セッション ホストの自動スケールを確認するには、**az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示する Microsoft Edge ウィンドウで、**仮想マシン**を検索して選択し、**「仮想マシン」** ブレードで、**az140-21-RG** リソース グループ内の 3 つの Azure VM のステータスを確認します。
-1. 3 つの Azure VM のうち 2 つが割り当て解除の過程にあるか、すでに**停止 (割り当て解除)** されていることを確認します。
+1. Azure Virtual Desktop セッション ホストの自動スケールを確認するには、**az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示する Microsoft Edge ウィンドウで、**仮想マシン**を検索して選択し、**「仮想マシン」** ブレードで、**az140-21-RG** リソース グループ内の 3 つの Azure VM のステータスを確認します。
+1. 3 つの Azure VM のうち 2 つが割り当て解除の過程にあるか、すでに**停止 (割り当て解除)**されていることを確認します。
 
    >**注**: 自動スケールが機能していることを確認したらすぐに、Azure Logic アプリを無効にして、対応する料金を最小限に抑える必要があります。
 
@@ -261,13 +261,13 @@ Active Directory ドメイン サービス (AD DS) 環境で Windows Virtual Des
 1. 「Automation Account」 ブレードの左側の垂直メニューの **「Process Automation」** セクションで、**「ジョブ」** を選択し、**WVDAutoScaleRunbookARMBased** Runbook の個々の呼び出しに対応するジョブのリストを確認します。
 1. 最新のジョブを選択し、そのブレードで **「すべてのログ」** タブのヘッダーをクリックします。これにより、ジョブ実行ステップの詳細なリストが表示されます。
 
-#### タスク 2: Windows Log Analytics を使用して Azure Virtual Desktop イベントを追跡する
+#### タスク 2: Azure Log Analytics を使用して Azure Virtual Desktop イベントを追跡する
 
->**注**: 自動スケールやその他の Windows Virtual Desktop イベントを分析するには、Log Analytics を使用できます。
+>**注**: 自動スケールやその他の Azure Virtual Desktop イベントを分析するには、Log Analytics を使用できます。
 
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示している Microsoft Edge ウィンドウで、**Log Analytics ワークスペース**を検索して選択し、「Log Analytics ワークスペース」 ブレードで、このラボで使用されている Azure Log Analytics ワークスペースを表すエントリを選択します (名前は **az140-workspace-51** プレフィックスで始まります)。
 1. 「Log Analytics ワークスペース」 ブレードの左側の垂直メニューの **「全般」** セクションで、**「ログ」** をクリックし、**「Log Analytics へようこそ」** ペインで **「はじめに」** をクリックします。
-1. **「クエリ」** ペインの左側にある **「すべてのクエリ」** 垂直メニューで、**「Windows Virtual Desktop」** を選択し、事前定義されたクエリを確認します。
+1. **「クエリ」** ペインの左側にある **「すべてのクエリ」** 垂直メニューで、**「Azure Virtual Desktop」** を選択し、事前定義されたクエリを確認します。
 1. **「クエリ」** ペインを閉じます。これにより、**「新しいクエリ 1」** タブが自動的に表示されます。
 1. 「クエリ」 ウィンドウで、次のクエリを貼り付け、**「実行」** をクリックして、このラボで使用されているホスト プールのすべてのイベントを表示します。
 
@@ -307,9 +307,9 @@ Active Directory ドメイン サービス (AD DS) 環境で Windows Virtual Des
    | project TimeStampUTC = TimeGenerated, TimeStampLocal = TimeStamp_s, HostPool = hostpoolName_s, LineNumAndMessage = logmessage_s, AADTenantId = TenantId
    ```
 
-### 演習 3: ラボでプロビジョニングされた Azure VM を停止および割り当て解除する
+### 演習 3ラボでプロビジョニングされた Azure VM を停止および割り当て解除する
 
-このエクササイズの主なタスクは次のとおりです。
+この演習の主なタスクは次のとおりです:
 
 1. ラボでプロビジョニングされた Azure VM を停止および割り当て解除する
 
