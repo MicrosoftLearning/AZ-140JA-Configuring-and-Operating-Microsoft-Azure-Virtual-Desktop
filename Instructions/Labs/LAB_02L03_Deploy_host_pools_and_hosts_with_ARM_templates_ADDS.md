@@ -35,7 +35,7 @@ Azure Resource Manager テンプレートを使用して、Azure Virtual Desktop
 
 ## 手順
 
-### 演習 1Azure Resource Manager テンプレートを使用して、Azure Virtual Desktop ホスト プールとホストをデプロイする
+### 演習 1: Azure Resource Manager テンプレートを使用して、Azure Virtual Desktop ホスト プールとホストをデプロイする
   
 この演習の主なタスクは次のとおりです:
 
@@ -72,7 +72,7 @@ Azure Resource Manager テンプレートを使用して、Azure Virtual Desktop
    (Get-ADUser -Filter "sAMAccountName -eq 'student'").userPrincipalName
    ```
 
-1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE」** スクリプト ペインで、以下を実行して、このラボの後半で個人用デスクトップの割り当てをテストするために使用する **ADATUM\\aduser7** および **ADATUM\\aduser8 **アカウントのユーザー プリンシパル名を特定します。
+1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE」** スクリプト ペインで、以下を実行して、このラボの後半で個人用デスクトップの割り当てをテストするために使用する **ADATUM\\aduser7** および **ADATUM\\aduser8** アカウントのユーザー プリンシパル名を特定します。
 
    ```powershell
    (Get-ADUser -Filter "sAMAccountName -eq 'aduser7'").userPrincipalName
@@ -175,7 +175,7 @@ Azure Resource Manager テンプレートを使用して、Azure Virtual Desktop
    |リソース グループ|**az140-23-RG**|
    |ホストプール トークン|前のタスクで生成したトークンの値|
    |ホストプールの場所|このラボの前半でホストプールをデプロイした Azure リージョンの名前|
-   |VM 管理者アカウントのユーザー名|**受講生**|
+   |VM 管理者アカウントのユーザー名|**student**|
    |VM 管理者アカウントのパスワード|**Pa55w.rd1234**|
    |仮想マシンの場所|**Hostpool Location** パラメーターの値として設定されたものと同じ Azure リージョンの名前|
    |ネットワーク セキュリティ グループの作成|**false**|

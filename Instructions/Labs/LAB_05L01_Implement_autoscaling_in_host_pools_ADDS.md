@@ -35,7 +35,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
 
 ## 手順
 
-### 演習 1Azure Virtual Desktop セッションホストの自動スケールを構成する
+### 演習 1: Azure Virtual Desktop セッションホストの自動スケールを構成する
 
 この演習の主なタスクは次のとおりです:
 
@@ -240,7 +240,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
 1. 「**az140-21-hp1_Autoscale_Scheduler**」 ブレードの左側にある垂直メニューの 「**開発ツール**」 セクションで、「**ロジック アプリ デザイナー**」 をクリックします。 
 1. 「デザイナー」 ペインで、「**繰り返し**」というラベルの付いた長方形をクリックし、自動スケールの必要性が評価される頻度を制御するために使用できることに注意してください。 
 
-### 演習 2Azure Virtual Desktop セッションホストの自動スケールを確認およびレビューする
+### 演習 2: Azure Virtual Desktop セッションホストの自動スケールを確認およびレビューする
 
 この演習の主なタスクは次のとおりです:
 
@@ -250,22 +250,22 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
 #### タスク 1: Azure Virtual Desktop セッションホストの自動スケールを確認する
 
 1. Azure Virtual Desktop セッション ホストの自動スケールを確認するには、**az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示する Microsoft Edge ウィンドウで、**仮想マシン**を検索して選択し、**「仮想マシン」** ブレードで、**az140-21-RG** リソース グループ内の 3 つの Azure VM のステータスを確認します。
-1. 3 つの Azure VM のうち 2 つが割り当て解除の過程にあるか、すでに**停止 (割り当て解除)**されていることを確認します。
+1. 3 つの Azure VM のうち 2 つが割り当て解除の過程にあるか、すでに **停止 (割り当て解除)** されていることを確認します。
 
    >**注**: 自動スケールが機能していることを確認したらすぐに、Azure Logic アプリを無効にして、対応する料金を最小限に抑える必要があります。
 
 1. Azure Logic アプリを無効にするには、**az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示する Microsoft Edge ウィンドウにで、**Logic Apps** を検索して選択し、**「Logic Apps」** ブレードで、**az140-21-hp1_Autoscale_Scheduler** という名前の新しくプロビジョニングされた Azure Logic アプリを表すエントリを選択します。
 1. **「az140-21-hp1_Autoscale_Scheduler」** ブレードのツールバーで、**「無効化」** をクリックします。 
 1. **「az140-21-hp1_Autoscale_Scheduler」** ブレードの **「Essentials」** セクションで、過去 24 時間の成功した実行の数や、再発の頻度を示す **「Summary」** セクションなどの情報を確認します。 
-1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示している Microsoft Edge ウィンドウで、**Automationアカウント**を検索して選択し、**Automationアカウント** ブレードで、新しくプロビジョニングされたAzure Automation アカウント (名前は **az140-automation-51** プレフィックスで始まる) を表すエントリを選択します。
-1. 「Automation Account」 ブレードの左側の垂直メニューの **「Process Automation」** セクションで、**「ジョブ」** を選択し、**WVDAutoScaleRunbookARMBased** Runbook の個々の呼び出しに対応するジョブのリストを確認します。
+1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示している Microsoft Edge ウィンドウで、**Automationアカウント**を検索して選択し、**Automationアカウント** ブレードで、新しくプロビジョニングされた Azure Automation アカウント (名前は **az140-automation-51** プレフィックスで始まる) を表すエントリを選択します。
+1. **「Automation Account」** ブレードの左側の垂直メニューの **「Process Automation」** セクションで、**「ジョブ」** を選択し、**WVDAutoScaleRunbookARMBased** Runbook の個々の呼び出しに対応するジョブのリストを確認します。
 1. 最新のジョブを選択し、そのブレードで **「すべてのログ」** タブのヘッダーをクリックします。これにより、ジョブ実行ステップの詳細なリストが表示されます。
 
 #### タスク 2: Azure Log Analytics を使用して Azure Virtual Desktop イベントを追跡する
 
 >**注**: 自動スケールやその他の Azure Virtual Desktop イベントを分析するには、Log Analytics を使用できます。
 
-1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示している Microsoft Edge ウィンドウで、**Log Analytics ワークスペース**を検索して選択し、「Log Analytics ワークスペース」 ブレードで、このラボで使用されている Azure Log Analytics ワークスペースを表すエントリを選択します (名前は **az140-workspace-51** プレフィックスで始まります)。
+1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示している Microsoft Edge ウィンドウで、**Log Analytics ワークスペース**を検索して選択し、**「Log Analytics ワークスペース」** ブレードで、このラボで使用されている Azure Log Analytics ワークスペースを表すエントリを選択します (名前は **az140-workspace-51** プレフィックスで始まります)。
 1. 「Log Analytics ワークスペース」 ブレードの左側の垂直メニューの **「全般」** セクションで、**「ログ」** をクリックし、**「Log Analytics へようこそ」** ペインで **「はじめに」** をクリックします。
 1. **「クエリ」** ペインの左側にある **「すべてのクエリ」** 垂直メニューで、**「Azure Virtual Desktop」** を選択し、事前定義されたクエリを確認します。
 1. **「クエリ」** ペインを閉じます。これにより、**「新しいクエリ 1」** タブが自動的に表示されます。
@@ -307,7 +307,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
    | project TimeStampUTC = TimeGenerated, TimeStampLocal = TimeStamp_s, HostPool = hostpoolName_s, LineNumAndMessage = logmessage_s, AADTenantId = TenantId
    ```
 
-### 演習 3ラボでプロビジョニングされた Azure VM を停止および割り当て解除する
+### 演習 3: ラボでプロビジョニングされた Azure VM を停止および割り当て解除する
 
 この演習の主なタスクは次のとおりです:
 

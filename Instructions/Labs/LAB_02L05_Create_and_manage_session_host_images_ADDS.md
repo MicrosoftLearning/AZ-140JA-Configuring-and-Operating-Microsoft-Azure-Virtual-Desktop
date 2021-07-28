@@ -34,7 +34,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
 
 ## 手順
 
-### 演習 1セッション ホスト イメージを作成および管理する
+### 演習 1: セッション ホスト イメージを作成および管理する
   
 この演習の主なタスクは次のとおりです:
 
@@ -45,7 +45,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
 
 #### タスク 1: Azure Virtual Desktop ホスト イメージの構成を準備する
 
-1. ラボ コンピューターから、Web ブラウザーを起動し、「Azure portal」(https://portal.azure.com) に移動し、このラボで使用するサブスクリプションの所有者ロールを持つユーザー アカウントの資格情報を指定してサインインします。
+1. ラボ コンピューターから、Web ブラウザーを起動し、[Azure portal](https://portal.azure.com) に移動し、このラボで使用するサブスクリプションの所有者ロールを持つユーザー アカウントの資格情報を指定してサインインします。
 1. Azure で、検索テキストボックスのすぐ右にあるツールバーアイコンを選択して、**Cloud Shell** ペインを表示します。
 1. **Bash** や **PowerShell** のどちらかを選択するためのプロンプトが表示されたら、**PowerShell** を選択します。 
 1. ラボ コンピューターの Azure portal を表示している Web ブラウザーで、Cloud Shell ペインの PowerShell セッションから、以下を実行して、Azure Virtual Desktop ホスト イメージを含むリソース グループを作成します。
@@ -78,7 +78,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
 
    |設定|値|
    |---|---|
-   |ユーザー名|**受講生**|
+   |ユーザー名|**Student**|
    |パスワード|**Pa55w.rd1234**|
 
    > **注**: まず、FSLogix バイナリをインストールします。
@@ -296,7 +296,7 @@ Teams デスクトップアプリを VM(https://docs.microsoft.com/ja-jp/microso
    > **注**: カスタム イメージに基づいてホストを展開した後、[GitHub リポジトリ](https://github.com/The-Virtual-Desktop-Team/)から入手できる仮想デスクトップ最適化ツールの実行を検討する必要があります。
 
 
-### 演習 2ラボでプロビジョニングされた Azure VM を停止および割り当て解除する
+### 演習 2: ラボでプロビジョニングされた Azure VM を停止および割り当て解除する
 
 この演習の主なタスクは次のとおりです:
 

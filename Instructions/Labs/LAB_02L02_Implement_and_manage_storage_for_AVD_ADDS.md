@@ -33,7 +33,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境で Azure V
 
 ## 手順
 
-### 演習 1Azure Virtual Desktop 用プロファイル コンテナーを格納するために Azure Files を構成する
+### 演習 1: Azure Virtual Desktop 用プロファイル コンテナーを格納するために Azure Files を構成する
 
 この演習の主なタスクは次のとおりです:
 

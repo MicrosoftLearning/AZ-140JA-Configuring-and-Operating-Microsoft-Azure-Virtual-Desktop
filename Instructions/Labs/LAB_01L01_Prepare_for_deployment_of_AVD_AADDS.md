@@ -36,7 +36,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境での Azur
 
 ## 手順
 
-### 演習 0vCPU クォータの数を増やす
+### 演習 0: vCPU クォータの数を増やす
 
 この演習の主なタスクは次のとおりです:
 
@@ -118,7 +118,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境での Azur
    > **注**: この範囲の vCPU 内のクォータ増加要求は、通常、数時間以内に完了します。ただし、待機することなく、このラボを完了できます。
 
 
-### 演習 1Active Directory Domain Services (AD DS) ドメインを実装する
+### 演習 1: Active Directory Domain Services (AD DS) ドメインを実装する
 
 この演習の主なタスクは次のとおりです:
 
@@ -230,7 +230,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境での Azur
 
 1. ラボ コンピューターの Azure portal で、**Azure AD ドメイン サービス**を検索して選択し、**「Azure AD ドメイン サービス」** ブレードから **adatum.com** エントリを選択して、新しくプロビジョニングされたAzure AD DS インスタンスに移動します。 
 1. Azure AD DS インスタンスの **adatum.com** ブレードで、**管理するドメインの構成の問題が検出された**ことを示す警告をクリックします。 
-1. **adatum.com** で** | 「構成診断 (プレビュー)」** ブレードで、**「実行」** をクリックします。
+1. **adatum.com** で **| 「構成診断 (プレビュー)」** ブレードで、**「実行」** をクリックします。
 1. **「検証」** セクションで、**「DNS レコード」** ペインを展開し、**「修正」** をクリックします。
 1. **「DNS レコード」** ブレードで、もう一度 **「修正」** をクリックします。
 1. Azure AD DS インスタンスの **adatum.com** ブレードに戻り、**「必要な構成手順」** セクションで、Azure AD DS のパスワードハッシュ同期に関する情報を確認します。 
@@ -256,7 +256,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境での Azur
 
 1. 前述の 2 つの手順を繰り返して、**wvdaadmin1** ユーザー アカウントのパスワードをリセットします。
 
-### 演習 2Azure AD DS ドメイン環境を構築する
+### 演習 2: Azure AD DS ドメイン環境を構築する
   
 この演習の主なタスクは次のとおりです:
 

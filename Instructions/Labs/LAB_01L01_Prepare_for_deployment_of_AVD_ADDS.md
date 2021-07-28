@@ -37,7 +37,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 
 ## 手順
 
-### 演習 0vCPU クォータの数を増やす
+### 演習 0: vCPU クォータの数を増やす
 
 この演習の主なタスクは次のとおりです:
 
@@ -118,7 +118,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 
    > **注**: この範囲の vCPU 内のクォータ増加要求は、通常、数時間以内に完了します。ただし、待機することなく、このラボを完了できます。
 
-### 演習 1Active Directory Domain Services (AD DS) ドメインをデプロイする
+### 演習 1: Active Directory Domain Services (AD DS) ドメインをデプロイする
 
 この演習の主なタスクは次のとおりです:
 
@@ -143,7 +143,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
    > **注**: Azure VM をプロビジョニングできる Azure リージョンを特定するには、[https://azure.microsoft.com/ja-jp/regions/offers/](https://azure.microsoft.com/ja-jp/regions/offers/) を参照してください。
 
 1. コマンドが **True** を返したことを確認します。そうでない場合は、コマンドが **True** を返すまで、`<custom-name>` の異なる値で同じコマンドを再実行します。
-1. 功を奏した結果となった`<custom-name>` の値を記録します。この名前は、次のタスクで必要になります。
+1. 功を奏した結果となった `<custom-name>` の値を記録します。この名前は、次のタスクで必要になります。
 
 #### タスク 2: Azure Resource Manager QuickStart テンプレートを使用して、AD DS ドメイン管理者を実行する Azure VM をデプロイする
 
@@ -202,7 +202,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
    > **注**: デプロイが完了するのを待たず、代わりに次の演習に進みます。デプロイには約 10 分間かかります。
 
 
-### 演習 2AD DS フォレストを Azure AD テナントに統合する
+### 演習 2: AD DS フォレストを Azure AD テナントに統合する
   
 この演習の主なタスクは次のとおりです:
 
@@ -212,7 +212,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 1. Azure AD Connect をインストールします。
 1. ハイブリッド Azure AD 参加の構成
 
-#### タスク 1: 10Azure AD と同期する AD DS ユーザーとグループを作成する
+#### タスク 1: Azure AD と同期する AD DS ユーザーとグループを作成する
 
 1. ラボ コンピューターの Azure portal を表示する Web ブラウザーで、**仮想マシン**を検索して選択し、**「仮想マシン」** ブレードから **az140-dc-vm11** を選択します。
 1. **「az140-dc-vm11」** ブレードで、**「接続」** を選択し、ドロップダウン メニューで **「RDP」** を選択し、**「az140-vm11 \| 接続**」 ブレードの **「RDP」** タブの **「IP アドレス」** ドロップダウン リストで、**「ロード バランサ―の DNS 名」** エントリ、次に **「RDP ファイルをダウンロード」** を選択します。
@@ -224,7 +224,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
    |パスワード|**Pa55w.rd1234**|
 
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、**Windows PowerShell ISE** を管理者として起動します。
-1. 「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次のコマンドを実行して、管理者向け Internet Explore rのセキュリティ強化を無効にします。
+1. 「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次のコマンドを実行して、管理者向け Internet Explorer のセキュリティ強化を無効にします。
 
    ```powershell
    $adminRegEntry = 'HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}'
@@ -267,7 +267,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
    Get-ADGroup -Identity 'Domain Admins' | Add-AdGroupMember -Members 'wvdadmin1'
    ```
 
-   > **注**: このスクリプトは、**aduser1** - **aduser9**という名前の 9 つの非特権ユーザー アカウントと、**wvdadmin1** という名前の **ADATUM\\Domain Admins** グループのメンバーである 1 つの特権アカウントを作成します。
+   > **注**: このスクリプトは、**aduser1** - **aduser9** という名前の 9 つの非特権ユーザー アカウントと、**wvdadmin1** という名前の **ADATUM\\Domain Admins** グループのメンバーである 1 つの特権アカウントを作成します。
 
 1. 「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次のコマンドを実行して、このラボで使用する Azure AD テナントに同期される AD DS グループ オブジェクトを作成します。
 
@@ -413,7 +413,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
    |パスワード|**Pa55w.rd1234**|
 
 1. **ディレクトリを接続する**ページに戻り、**adatum.com** エントリが構成済みディレクトリとして表示されていることを確認し、**「次へ」** を選択します
-1. **「Azure AD サインイン情報の構成」** ページで、**UPN サフィックスが確認済みのドメイン名と一致しない場合、ユーザーはオンプレミスの資格情報で Azure AD にサインインできません**という警告に注意して、チェックボックス**「すべての UPN サフィックスを確認済みドメインに一致させずに続行」** を有効にし、**「次へ」** を選択します。
+1. **「Azure AD サインイン情報の構成」** ページで、**UPN サフィックスが確認済みのドメイン名と一致しない場合、ユーザーはオンプレミスの資格情報で Azure AD にサインインできません**という警告に注意して、チェックボックス **「すべての UPN サフィックスを確認済みドメインに一致させずに続行」** を有効にし、**「次へ」** を選択します。
 
    > **注**: Azure AD テナントには、**adatum.com** AD DS の UPN サフィックスの 1 つと一致する検証済みのカスタム DNS ドメインがないため、こは予想されます。
 
