@@ -1,17 +1,17 @@
 ---
 lab:
-    title: 'ラボ: Windows Virtual Desktop プロファイル (AD DS) を実装および管理する'
+    title: 'ラボ: Azure Virtual Desktop プロファイル (AD DS) を実装および管理する'
     module: 'モジュール 4: ユーザーの環境とアプリを管理する'
 ---
 
-# ラボ - Windows Virtual Desktop プロファイル (AD DS) を実装および管理する
+# ラボ - Azure Virtual Desktop プロファイル (AD DS) を実装および管理する
 # 受講生用ラボ マニュアル
 
 ## ラボの依存関係
 
 - このラボで使用する Azure サブスクリプション。
 - このラボで使用する Azure サブスクリプション内で所有者または共同作成者のロールを持つ Microsoft アカウントまたは Azure AD アカウント、この Azure サブスクリプションに関連付けられた Azure AD テナント内でグローバル管理者ロールを持つMicrosoft アカウントまたは Azure AD アカウント。
-- 実施するラボ - **Azure Windows Virtual Desktop (AD DS) のデプロイを準備する**
+- 実施するラボ - **Azure Virtual Desktop (AD DS) のデプロイを準備する**
 - 実施するラボ - **WVD (AD DS) 用のストレージを実装および管理する**
 
 ## 推定所要時間
@@ -20,34 +20,34 @@ lab:
 
 ## ラボ シナリオ
 
-Active Directory ドメイン サービス (AD DS) 環境に Windows 仮想デスクトップ プロファイル管理を実装する必要があります。
+Active Directory ドメイン サービス (AD DS) 環境に Azure Virtual Desktop プロファイル管理を実装する必要があります。
 
 ## 目標
   
-このラボを終了すると、以下ができるようになります。
+このラボを終了すると、下記ができるようになります。
 
-- Windows Virtual Desktop の FSLogix ベースのプロファイルを実装する
+- Azure Virtual Desktop の FSLogix ベースのプロファイルを実装する
 
 ## ラボ ファイル
 
-- None
+- なし
 
-## 説明
+## 手順
 
-### 演習 1: Windows Virtual Desktop の FSLogix ベースのプロファイルを実装する
+### 演習 1: Azure Virtual Desktop の FSLogix ベースのプロファイルを実装する
 
-このエクササイズの主なタスクは次のとおりです。
+この演習の主なタスクは次のとおりです:
 
-1. Windows Virtual Desktop セッション ホスト VM で FSLogix ベースのプロファイルを構成する
-1. Windows Virtual Desktop を使用して FSLogix ベースのプロファイルをテストする
+1. Azure Virtual Desktop セッション ホスト VM で FSLogix ベースのプロファイルを構成する
+1. Azure Virtual Desktop を使用して FSLogix ベースのプロファイルをテストする
 1. ラボにデプロイした Azure リソースを削除する
 
-#### タスク 1: Windows Virtual Desktop セッション ホスト VM で FSLogix ベースのプロファイルを構成する
+#### タスク 1: Azure Virtual Desktop セッション ホスト VM で FSLogix ベースのプロファイルを構成する
 
-1. ラボのコンピューターから Web ブラウザーを起動し、 [Azure portal](https://portal.azure.com) に移動し、このラボで使用するサブスクリプションの所有者の役割を持つユーザーアカウントの認証情報を提供してサインインします。
-1. Azure portalで、**仮想マシン** を検索して選択し、 **「Virtual Machines」** ブレードで、**az140-vm11** を選択します 。
-1. **「az140-dc-vm11」** ブレードで、**「接続」** を選択し、ドロップダウン メニューで **「RDP」** を選択し、**「az140-vm11 \| 接続**」 ブレードの 「RDP」 タブの **「IP アドレス」** ドロップダウン リストで、**「ロード バランサ―の DNS 名」** エントリ、次に **「RDP ファイルをダウンロード」** を選択します。
-1. プロンプトが表示されたら、次の資格情報でサインインします。
+1. ラボ コンピューターから、Web ブラウザーを起動し、[Azure portal](https://portal.azure.com) に移動し、このラボで使用するサブスクリプションの所有者ロールを持つユーザー アカウントの資格情報を指定してサインインします。
+1. Azure portalで、「**仮想マシン**」を検索して選択し、**「Virtual Machines」** ブレードで、**az140-vm11** を選択します。
+1. **「az140-dc-vm11」** ブレードで、**「接続」** を選択し、ドロップダウン メニューで **「RDP」** を選択し、**「az140-vm11 \| 接続**」 ブレードの **「RDP」** タブの **「IP アドレス」** ドロップダウン リストで、**「ロード バランサ―の DNS 名」** エントリ、次に **「RDP ファイルをダウンロード」** を選択します。
+1. プロンプトが表示されたら、次の認証情報を入力します。
 
    |設定|値|
    |---|---|
@@ -58,17 +58,20 @@ Active Directory ドメイン サービス (AD DS) 環境に Windows 仮想デ�
 
    > **注**: 次の手順では、次のラボを準備します。ホストを再起動すると、ユーザー プロファイルが確実にオフロードされます。
 
-1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインから、以下を実行して、両方のセッション ホスト VM を再起動します
+1. ラボ コンピューターから、Web ブラウザーを起動し、[Azure portal](https://portal.azure.com) に移動し、このラボで使用するサブスクリプションの所有者ロールを持つユーザー アカウントの資格情報を指定してサインインします。
+1. ラボ コンピューターにの Azure portal を表示している Web ブラウザーの画面で、**Cloud Shell** ペイン内の **PowerShell** シェル セッションを開きます。
+1. Cloud Shell ペインの PowerShell セッションから、以下を実行して、このラボで使用する Azure VM をホストする Azure Virtual Desktop セッションを開始します。
 
    ```powershell
-   $servers = 'az140-21-p1-0','az140-21-p1-1'
-   Restart-Computer -ComputerName $servers -Force
+   Get-AzVM -ResourceGroup 'az140-21-RG' | Start-AzVM
    ```
+
+   >**注**: Azure VM が実行中になるのを待ってから、次の手順に進みます。
 
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge を起動して、[Azure portal](https://portal.azure.com) に移動します。プロンプトが表示されたら、このラボで使用しているサブスクリプションで所有者の役割を持つユーザーアカウントの資格情報を使用してサインインします。
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示している Microsoft Edge ウィンドウで、**「仮想ネットワーク」** ブレードを検索して選択し、**「仮想ネットワーク」** ブレードから **az140-21-p1-0** を選択します。
 1. **「az140-21-p1-0」** ブレードで、**「接続」** を選択し、ドロップダウン メニューで **「RDP」** を選択し、「**az140-21-p1-0 \| 接続」** ブレードの **「IP アドレス」** ドロップダウン リストで、**「パブリック IP アドレス」** エントリ、**「RDP ファイルをダウンロード」** を選択してから、**「開く」** を選択します。
-1. プロンプトが表示されたら、次の資格情報でサインインします。
+1. プロンプトが表示されたら、次の認証情報を入力します。
 
    |設定|値|
    |---|---|
@@ -76,10 +79,13 @@ Active Directory ドメイン サービス (AD DS) 環境に Windows 仮想デ�
    |パスワード|**Pa55w.rd1234**|
 
 1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、Microsoft Edge を起動し、[FSLogix ダウンロード ページ](https://aka.ms/fslogix_download)を参照し、FSLogix 圧縮インストール バイナリをダウンロードして、**C:\\Allfiles\\Labs\\04** フォルダー (必要に応じて、フォルダ－を作成する) に抽出し、**x64\\Release** サブフォルダーに移動し、**FSLogixAppsSetup.exe** ファイルをダブルクリックして、**Microsoft FSLogix Apps セットアップ** ウィザードを実行し、デフォルト設定で Microsoft FSLogix Appsをインストールします。
-1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、管理者として **Windows PowerShell ISE** を起動し、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、以下を実行して PowerShellGet モジュールの最新バージョンをインストールします (確認を求められたら **「はい」** を選択します)。
+
+   > **注**: イメージがすでに含まれている場合、FXLogic のインストールは不要です。
+
+3. **az140-21-p1-0** へのリモート デスクトップ セッション内で、管理者として **Windows PowerShell ISE** を起動し、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、以下を実行して PowerShellGet モジュールの最新バージョンをインストールします (確認を求められたら **「はい」** を選択します)。
 
    ```powershell
-   「Net.ServicePointManager」::SecurityProtocol = 「Net.SecurityProtocolType」::Tls12
+   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
    Install-Module -Name PowerShellGet -Force -SkipPublisherCheck
    ```
 
@@ -106,7 +112,7 @@ Active Directory ドメイン サービス (AD DS) 環境に Windows 仮想デ�
 
    ```powershell
    $resourceGroupName = 'az140-22-RG'
-   $storageAccountName = (Get-AzStorageAccount -ResourceGroupName $resourceGroupName)「0」.StorageAccountName   
+   $storageAccountName = (Get-AzStorageAccount -ResourceGroupName $resourceGroupName)[0].StorageAccountName   
    ```
 
 1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインから、以下を実行して、プロファイル レジストリ設定を構成します。
@@ -120,7 +126,7 @@ Active Directory ドメイン サービス (AD DS) 環境に Windows 仮想デ�
    New-ItemProperty -Path $profilesParentKey\$profilesChildKey -Name 'VHDLocations' -PropertyType MultiString -Value "\\$storageAccountName.file.core.windows.net\$fileShareName"
    ```
 
-1. **az140-21-p1** へのリモート デスクトップ セッション内で、**「スタート」** を右クリックし、右クリック メニューで **「ファイル名を指定して実行」** を選択し、**「ファイル名を指定して実行」** ダイアログボックスの **「開く」** テキストボックスに次のように入力し、**「OK」** を選択して **「ローカル ユーザーとグループ」** コンソールを起動します。
+1. **az140-21-p1** へのリモート デスクトップ セッション内で、**「スタート」** を右クリックし、右クリック メニューで **「ファイル名を指定して実行」** を選択し、**「ファイル名を指定して実行」** ダイアログ ボックスの **「開く」** テキストボックスに次のように入力し、**「OK」** を選択して **「ローカル ユーザーとグループ」** コンソールを起動します。
 
    ```cmd
    lusrmgr.msc
@@ -136,7 +142,7 @@ Active Directory ドメイン サービス (AD DS) 環境に Windows 仮想デ�
 1. **「ローカル ユーザーとグループ」** コンソールのグループのリストで、**「FSLogix プロファイ包含リスト」** グループをダブルクリックし、**\\Everyone** グループが含まれていることを確認し、**「OK」** を選択して グループの **「プロパティ」** ウィンドウを閉じます。 
 1. **ローカル ユーザーとグループ** コンソールのグループのリストで、**FSLogix プロファイル除外リスト** グループをダブルクリックし、既定ではグループ メンバーが含まれていないことに注意し、**「OK」** を選択してグループの **「プロパティ」** ウィンドウを閉じます。 
 
-   > **注**: 一貫したユーザー エクスペリエンスを提供するには、すべての Windows Virtual Desktop セッション ホストに FSLogix コンポーネントをインストールして構成する必要があります。このタスクは、ラボ環境の他のセッション ホストで無人で実行します。 
+   > **注**: 一貫したユーザー エクスペリエンスを提供するには、すべての Azure Virtual Desktop セッション ホストに FSLogix コンポーネントをインストールして構成する必要があります。このタスクは、ラボ環境の他のセッション ホストで無人で実行します。 
 
 1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次を実行して FSLogix コンポーネントを **az140-21-p1-1** セッション ホストにインストールします。
 
@@ -150,7 +156,7 @@ Active Directory ドメイン サービス (AD DS) 環境に Windows 仮想デ�
    } 
    ```
 
-   > **注**: スクリプトの実行が完了するのを待ちます。2 分間程度かかる場合があります。
+   > **注**: スクリプトの実行が完了するのを待ちます。これにはおよそ 2 分かかる場合があります。
 
 1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次を実行して、**az140-21-p1-1** セッション ホストでプロファイル レジストリ設定を構成します。
 
@@ -165,7 +171,7 @@ Active Directory ドメイン サービス (AD DS) 環境に Windows 仮想デ�
    }
    ```
 
-   > **注**: FSLogix ベースのプロファイル機能をテストする前に、テストに使用する **ADATUM\aduser1** アカウントのローカルにキャッシュされたプロファイルを、前のラボで使用した Windows Virtual Desktop セッション ホストから削除する必要があります。
+   > **注**: FSLogix ベースのプロファイル機能をテストする前に、テストに使用する **ADATUM\aduser1** アカウントのローカルにキャッシュされたプロファイルを、前のラボで使用した Azure Virtual Desktop セッション ホストから削除する必要があります。
 
 1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次を実行して、セッションホストとして機能する両方の Azure VM でローカルにキャッシュされた **ADATUM\\aduser1** アカウントのプロファイルを削除します。
 
@@ -175,10 +181,10 @@ Active Directory ドメイン サービス (AD DS) 環境に Windows 仮想デ�
    Get-CimInstance -ComputerName $servers -Class Win32_UserProfile | Where-Object { $_.LocalPath.split('\')[-1] -eq $userName } | Remove-CimInstance
    ```
 
-#### タスク 2: Windows Virtual Desktop を使用して FSLogix ベースのプロファイルをテストする
+#### タスク 2: Azure Virtual Desktop を使用して FSLogix ベースのプロファイルをテストする
 
 1. ラボ コンピューターから、Azure portal を表示している Web ブラウザーの画面を表示しているラボ コンピューターに切り替え、**仮想ネットワーク**を検索して選択し、**「仮想ネットワーク」** ブレードから **az140-cl-vm11** エントリを選択します。
-1. 「**az140-cl-vm11**」 ブレードで、「**接続**」 を選択し、ドロップダウン メニューで、 「**RDP**」、次に 「**RDP ファイルをダウンロード**」 を選択します。
+1. 「**az140-cl-vm11**」 ブレードで、「**接続**」 を選択し、ドロップダウン メニューで、「**RDP**」、次に 「**RDP ファイルをダウンロード**」 を選択します。
 1. プロンプトが表示されたら、**ADATUM\\aduser1** の資格情報でサインインします。 
 1. **az140-cl-vm11** へのリモート デスクトップ セッション内で、**「スタート」** をクリックし、**「スタート」** メニューで、**「リモート デスクトップ」** をクリックして、リモート デスクトップ クライアントを起動します。
 1. **az140-cl-vm11** へのリモート デスクトップ セッション内の 「**リモート デスクトップ** クライアント」 ウィンドウのアプリケーションのリストで、**「コマンド プロンプト」** をダブルクリックし、プロンプトが表示されたら、**aduser1** アカウントのパスワードを入力し、**「コマンド プロンプト」** ウィンドウが正常に開くことを確認します。
@@ -197,5 +203,5 @@ Active Directory ドメイン サービス (AD DS) 環境に Windows 仮想デ�
 1. **SessionDesktop** セッション内で、**「スタート」** を右クリックし、右クリック メニューで **「シャットダウン」 または 「サインアウト」** を選択してから、カスケード メニューで **「サインアウト」** を選択します。
 1. ラボ コンピューターに切り替え、Azure portal を表示している Microsoft Edge ウィンドウで、**「ストレージ アカウント」** ブレードに移動し、前の演習で作成したストレージ アカウントを表すエントリを選択します。
 1. ストレージ アカウント ブレードの **「ファイル サービス」** セクションで **「ファイル共有」** を選択し、ファイル共有のリストで **「az140-22-profiles」** を選択します。 
-1. **az140-22-profiles** ブレードで、そのコンテンツに、A**DATUM\\aduser1** アカウントのセキュリティ識別子 (SID) とそれに続く **_aaduser1** サフィックスの組み合わせで構成される名前のフォルダーが含まれていることを確認します。
+1. **az140-22-profiles** ブレードで、そのコンテンツに、**ADATUM\\aduser1** アカウントのセキュリティ識別子 (SID) とそれに続く **_aduser1** サフィックスの組み合わせで構成される名前のフォルダーが含まれていることを確認します。
 1. 前の手順で特定したフォルダーを選択し、**Profile_aduser1.vhd** という名前の 1 つのファイルが含まれていることに注意してください。
