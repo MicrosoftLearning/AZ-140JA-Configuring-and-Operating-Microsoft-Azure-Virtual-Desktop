@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: AVD (AD DS) 用のストレージを実装および管理する'
     module: 'モジュール 2: AVD インフラストラクチャを実装する'
@@ -87,7 +87,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境で Azure V
 
 #### タスク 3: Azure Storage アカウントに対する AD DS 認証を有効にする 
 
-1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge ウィンドウで別のタブを開き、[Azure Files サンプルの GitHub リポジトリ](https://github.com/Azure-Samples/azure-files-samples/releases)に移動し、圧縮された **AzFilesHybid.zip** PowerShell モジュールの最新バージョンをダウンロードし、そのコンテンツを **C:\\Allfiles\\Labs\\02** フォルダーに抽出します (必要に応じてフォルダーを作成します)。
+1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge ウィンドウで別のタブを開き、[Azure Files サンプルの GitHub リポジトリ](https://github.com/Azure-Samples/azure-files-samples/releases)に移動し、圧縮された **AzFilesHybrid.zip** PowerShell モジュールの最新バージョンをダウンロードし、そのコンテンツを **C:\\Allfiles\\Labs\\02** フォルダーに抽出します (必要に応じてフォルダーを作成します)。
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、管理者として **Windows PowerShell ISE** を起動し、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次のコマンドを実行して、値が **3** の **Zone.Identifier** 代替データストリームを削除します。これは、インターネットからダウンロードされたことを示します。
 
    ```powershell

@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: Azure portal (AD DS) を使用してホスト プールとセッション ホストをデプロイする'
     module: 'モジュール 2: AVD インフラストラクチャを実装する'
@@ -127,11 +127,12 @@ Azure Active Directory ドメインサービス (AD DS) 環境でホスト プ�
    |サブネット|**hp1-Subnet (10.0.1.0/24)**|
    |ネットワーク セキュリティ グループ|**Basic**|
    |パブリック受信ポート|**いいえ**|
+   |参加するディレクトリを選択する|**Active Directory**|
+   |AD ドメインの UPN への参加|**student@adatum.com**|
+   |パスワード|**Pa55w.rd1234**|
    |特定のドメインまたはユニット|**はい**|
    |参加するドメイン|**adatum.com**|
    |組織単位パス|**OU=WVDInfra,DC=adatum,DC=com**|
-   |AD ドメインの UPN への参加|**student@adatum.com**|
-   |パスワード|**Pa55w.rd1234**|
    |ユーザー名|学生|
    |パスワード|Pa55w.rd1234|
    |「パスワードの確認入力」|Pa55w.rd1234|
