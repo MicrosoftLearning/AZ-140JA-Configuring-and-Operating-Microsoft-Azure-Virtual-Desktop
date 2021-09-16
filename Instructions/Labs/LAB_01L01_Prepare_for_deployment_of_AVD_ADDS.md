@@ -1,6 +1,6 @@
 ---
 lab:
-    title: 'ラボ: Azure Virtual Desktop (AD DS) のデプロイの準備'
+    title: 'ラボ: Azure Virtual Desktop (AD DS) のデプロイを準備する'
     module: 'モジュール 1: AVD アーキテクチャを計画する'
 ---
 
@@ -389,6 +389,24 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 
 #### タスク 4: Azure AD Connect をインストールします。
 
+1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」スクリプト ペインから、以下を実行して、TLS 1.2 を有効にします。
+
+   ```powershell
+   New-Item 'HKLM:\SOFTWARE\WOW6432Node\Microsoft.NETFramework\v4.0.30319' -Force | Out-Null
+   New-ItemProperty -path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v4.0.30319' -name 'SystemDefaultTlsVersions' -value '1' -PropertyType 'DWord' -Force | Out-Null
+   New-ItemProperty -path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v4.0.30319' -name 'SchUseStrongCrypto' -value '1' -PropertyType 'DWord' -Force | Out-Null
+   New-Item 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319' -Force | Out-Null
+   New-ItemProperty -path 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319' -name 'SystemDefaultTlsVersions' -value '1' -PropertyType 'DWord' -Force | Out-Null
+   New-ItemProperty -path 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319' -name 'SchUseStrongCrypto' -value '1' -PropertyType 'DWord' -Force | Out-Null
+   New-Item 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server' -Force | Out-Null
+   New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server' -name 'Enabled' -value '1' -PropertyType 'DWord' -Force | Out-Null
+   New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server' -name 'DisabledByDefault' -value 0 -PropertyType 'DWord' -Force | Out-Null
+   New-Item 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client' -Force | Out-Null
+   New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client' -name 'Enabled' -value '1' -PropertyType 'DWord' -Force | Out-Null
+   New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client' -name 'DisabledByDefault' -value 0 -PropertyType 'DWord' -Force | Out-Null
+   Write-Host 'TLS 1.2 has been enabled.'
+   ```
+   
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Internet Explorer を起動して、[Microsoft Edge for Business のダウンロード ページ](https://www.microsoft.com/ja-jp/edge/business/download)に移動します。
 1. az140-dc-vm11 へのリモート デスクトップ セッション内で、Internet Explorer を起動し、[Microsoft Edge for Business のダウンロードページ](https://www.microsoft.com/ja-jp/edge/business/download)に移動します。
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge を使用し、[Azure portal](https://portal.azure.com) に移動します。プロンプトが表示されたら、このラボで使用しているサブスクリプションで所有者の役割を持つユーザーアカウントの資格情報を使用してサインインします。
