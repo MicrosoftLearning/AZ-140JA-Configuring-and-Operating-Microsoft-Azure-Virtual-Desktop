@@ -1,6 +1,6 @@
 ﻿---
 lab:
-    title: 'ラボ: Azure Virtual Desktop (Azure AD DS) のデプロイの準備'
+    title: 'ラボ: Azure Virtual Desktop (Azure AD DS) のデプロイを準備する'
     module: 'モジュール 1: AVD アーキテクチャを計画する'
 ---
 
@@ -310,7 +310,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境での Azur
    Add-AzureADGroupMember -ObjectId $groupObjectId -RefObjectId $userObjectId
    ```
 
-1 「Cloud Shell」 ペインを閉じます。
+1. 「Cloud Shell」 ペインを閉じます。
 1. ラボ コンピューターの Azure portal で、**仮想マシン**を検索して選択し、**「仮想マシン」** ブレードから **az140-cl-vm11a** エントリを選択します。これにより、**az140-cl-vm11a** ブレードが開きます。
 1. **「az140-cl-vm11a」** ブレードで、**「接続」**を選択し、ドロップダウン メニューで **「RDP」** を選択し、**「az140-cl-vm11a \| 接続」** ブレードの **「RDP」** タブの **「IP アドレス」** ドロップダウン リストで、**「パブリック IP アドレス」** エントリ、次に **「RDP ファイルをダウンロード」** を選択します。
 1. プロンプトが表示されたら、次の認証情報を入力します。
