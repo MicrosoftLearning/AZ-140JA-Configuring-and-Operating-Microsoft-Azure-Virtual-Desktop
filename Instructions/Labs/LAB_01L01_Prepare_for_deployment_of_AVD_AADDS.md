@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: Azure Virtual Desktop (Azure AD DS) のデプロイを準備する'
     module: 'モジュール 1: AVD アーキテクチャを計画する'
@@ -342,7 +342,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境での Azur
 #### タスク 3: Azure AD DS と同期する AD DS ユーザーとグループを作成する
 
 1. リモート デスクトップ内で **az140-cl-vm11a** Azure VM に移動し、Microsoft Edge を起動し、[Azure portal](https://portal.azure.com) に移動し、パスワードとして **Pa55w.rd1234** を使用して **aadadmin1** ユーザー アカウントのユーザー プリンシパル名を指定してサインインします。
-1. Azure portal 上の **Cloud Shell** で PowerShell セッションを開きます。
+1. Azure portal で **Cloud Shell** を開きます。
 1. **Bash** や **PowerShell** のどちらかを選択するプロンプトが表示されたら、**PowerShell** を選択します。 
 
    >**注**: **aadadmin1** ユーザー アカウントを使用して **Cloud Shell** を起動するのはこれが初めてなので、Cloud Shell のホームディレクトリを構成する必要があります。**「ストレージがマウントされていません」** というメッセージが表示されたら、このラボで使用しているサブスクリプションを選択し、**「ストレージの作成」** を選択します。 

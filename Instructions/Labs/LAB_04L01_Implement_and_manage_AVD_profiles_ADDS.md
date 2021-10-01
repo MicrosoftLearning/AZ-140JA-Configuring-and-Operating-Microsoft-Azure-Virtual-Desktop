@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: Azure Virtual Desktop プロファイル (AD DS) を実装および管理する'
     module: 'モジュール 4: ユーザーの環境とアプリを管理する'
@@ -144,40 +144,44 @@ Active Directory ドメイン サービス (AD DS) 環境に Azure Virtual Deskt
 
    > **注**: 一貫したユーザー エクスペリエンスを提供するには、すべての Azure Virtual Desktop セッション ホストに FSLogix コンポーネントをインストールして構成する必要があります。このタスクは、ラボ環境の他のセッション ホストで無人で実行します。 
 
-1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次を実行して FSLogix コンポーネントを **az140-21-p1-1** セッション ホストにインストールします。
+1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次を実行して FSLogix コンポーネントを **az140-21-p1-1** および **'az140-21-p1-1'** セッション ホストにインストールします。
 
    ```powershell
-   $server = 'az140-21-p1-1' 
-   $localPath = 'C:\Allfiles\Labs\04\x64'
-   $remotePath = "\\$server\C$\Allfiles\Labs\04\x64\Release"
-   Copy-Item -Path $localPath\Release -Destination $remotePath -Filter '*.exe' -Force -Recurse
-   Invoke-Command -ComputerName $server -ScriptBlock {
-      Start-Process -FilePath $using:localPath\Release\FSLogixAppsSetup.exe -ArgumentList '/quiet' -Wait
-   } 
+   $servers = 'az140-21-p1-1', 'az140-21-p1-2'
+   foreach ($server in $servers) {
+      $localPath = 'C:\Allfiles\Labs\04\x64'
+      $remotePath = "\\$server\C$\Allfiles\Labs\04\x64\Release"
+      Copy-Item -Path $localPath\Release -Destination $remotePath -Filter '*.exe' -Force -Recurse
+      Invoke-Command -ComputerName $server -ScriptBlock {
+         Start-Process -FilePath $using:localPath\Release\FSLogixAppsSetup.exe -ArgumentList '/quiet' -Wait
+      } 
+   }
    ```
 
    > **注**: スクリプトの実行が完了するのを待ちます。これにはおよそ 2 分かかる場合があります。
 
-1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次を実行して、**az140-21-p1-1** セッション ホストでプロファイル レジストリ設定を構成します。
+1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、**az140-21-p1-1** および **'az140-21-p1-1'** セッション ホストで、プロファイル・レジストリー設定を構成します。
 
    ```powershell
    $profilesParentKey = 'HKLM:\SOFTWARE\FSLogix'
    $profilesChildKey = 'Profiles'
    $fileShareName = 'az140-22-profiles'
-   Invoke-Command -ComputerName $server -ScriptBlock {
-      New-Item -Path $using:profilesParentKey -Name $using:profilesChildKey –Force
-      New-ItemProperty -Path $using:profilesParentKey\$using:profilesChildKey -Name 'Enabled' -PropertyType DWord -Value 1
-      New-ItemProperty -Path $using:profilesParentKey\$using:profilesChildKey -Name 'VHDLocations' -PropertyType MultiString -Value "\\$using:storageAccountName.file.core.windows.net\$using:fileShareName"
+   foreach ($server in $servers) {
+      Invoke-Command -ComputerName $server -ScriptBlock {
+         New-Item -Path $using:profilesParentKey -Name $using:profilesChildKey –Force
+         New-ItemProperty -Path $using:profilesParentKey\$using:profilesChildKey -Name 'Enabled' -PropertyType DWord -Value 1
+         New-ItemProperty -Path $using:profilesParentKey\$using:profilesChildKey -Name 'VHDLocations' -PropertyType MultiString -Value "\\$using:storageAccountName.file.core.windows.net\$using:fileShareName"
+      }
    }
    ```
 
    > **注**: FSLogix ベースのプロファイル機能をテストする前に、テストに使用する **ADATUM\aduser1** アカウントのローカルにキャッシュされたプロファイルを、前のラボで使用した Azure Virtual Desktop セッション ホストから削除する必要があります。
 
-1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次を実行して、セッションホストとして機能する両方の Azure VM でローカルにキャッシュされた **ADATUM\\aduser1** アカウントのプロファイルを削除します。
+1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次を実行して、セッションホストとして機能するすべての Azure VM でローカルにキャッシュされた **ADATUM\\aduser1** アカウントのプロファイルを削除します。
 
    ```powershell
    $userName = 'aduser1'
-   $servers = 'az140-21-p1-0','az140-21-p1-1'
+   $servers = 'az140-21-p1-0','az140-21-p1-1', 'az140-21-p1-2'
    Get-CimInstance -ComputerName $servers -Class Win32_UserProfile | Where-Object { $_.LocalPath.split('\')[-1] -eq $userName } | Remove-CimInstance
    ```
 

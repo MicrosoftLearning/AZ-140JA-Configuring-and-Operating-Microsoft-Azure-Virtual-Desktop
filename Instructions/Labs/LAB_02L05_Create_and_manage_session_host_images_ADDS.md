@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: セッション ホスト イメージを作成および管理する (AD DS)'
     module: 'モジュール 2: WVD インフラストラクチャを実装する'
@@ -97,9 +97,9 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
    Start-Process -FilePath 'C:\Allfiles\Labs\02\x64\Release\FSLogixAppsSetup.exe' -ArgumentList '/quiet' -Wait
    ```
 
-   > **注**: インストールが完了するまで待ちます。1 分間程度かかる場合があります。
+   > **注**: インストールが完了するまで待ちます。1 分間程度かかる場合があります。インストールによって再起動がトリガーされた場合は、**az140-25-vm0** に再接続します。
 
-   > **注**: 次に、Microsoft Teams をインストールして構成します。
+   > **注**: 次に、Microsoft Teams のインストールと構成を順を追って説明します (このラボで使用するイメージには Teams が既に存在するため、学習目的で)。
 
 1. **az140-25-vm0** へのリモート デスクトップ セッション内で、**「スタート」** を右クリックし、右クリック メニューで **「ファイル名を指定して実行」** を選択し、**「ファイル名を指定して実行」** ダイアログ ボックスの **「開く」** テキストボックスに **cmd** と入力し、**Enter** キーを押して**コマンド プロンプト**を開始します。
 1. 「**管理者: C:\windows\system32\cmd.exe**」 ウィンドウで、コマンド プロンプトから次のコマンドを実行して、Microsoft Teams のマシンごとのインストールの準備をします。
@@ -127,7 +127,7 @@ Teams デスクトップアプリを VM(https://docs.microsoft.com/ja-jp/microso
 
    > **注**: インストーラーは、ALLUSER = 1 および ALLUSERS = 1 パラメーターをサポートします。ALLUSER = 1 パラメーターは、VDI 環境でのマシンごとのインストールを目的としています。ALLUSERS = 1 パラメーターは、VDI 以外の環境と VDI 環境で使用できます。 
 
-1. **az140-25-vm0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 ウィンドウに切り替え、「**管理者: Windows PowerShell ISE**」 コンソールで、次のコマンドを実行して Microsoft Edge Chromium をインストールします。
+1. **az140-25-vm0** へのリモート デスクトップ セッション内で、管理者として **Windows PowerShell ISE** を起動し、「**管理者: Windows PowerShell ISE**」コンソールで、次のコマンドを実行して Microsoft Edge Chromium をインストールします (このラボで使用するイメージには Edge が既に存在するため、学習目的で)。
 
    ```powershell
    Start-BitsTransfer -Source "https://aka.ms/edge-msi" -Destination 'C:\Allfiles\Labs\02\MicrosoftEdgeEnterpriseX64.msi'

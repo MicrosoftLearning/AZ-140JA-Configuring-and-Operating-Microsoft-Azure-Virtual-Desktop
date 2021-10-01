@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: Azure Virtual Desktop プロファイル (Azure AD DS) を実装および管理する'
     module: 'モジュール 4: ユーザーの環境とアプリを管理する'
@@ -41,6 +41,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境に Azure V
 1. Azure Virtual Desktop セッション ホスト VM でローカル管理者グループを構成する
 1. Azure Virtual Desktop セッション ホスト VM で FSLogix ベースのプロファイルを構成する
 1. Azure Virtual Desktop を使用して FSLogix ベースのプロファイルをテストする
+1. Azure ラボ リソースを削除する
 
 #### タスク 1: Azure Virtual Desktop セッション ホスト VM でローカル管理者グループを構成する
 
@@ -88,7 +89,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境に Azure V
 
 1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、Microsoft Edge を起動し、[FSLogix ダウンロード ページ](https://aka.ms/fslogix_download)を参照し、FSLogix 圧縮インストール バイナリをダウンロードして、**C:\\Source** フォルダーに抽出し、**x64\\Release** サブフォルダーに移動し、**FSLogixAppsSetup.exe** を使用して、Microsoft FSLogixApps をデフォルト設定でインストールします。
 
-   > **注**: イメージがすでに含まれているかどうがにより、FXLogic のインストールは不要になる場合があります。
+   > **注**: イメージがすでに含まれているかどうがにより、FXLogic のインストールは不要になる場合があります。FX Logix のインストールには、再起動が必要です。
 
 1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、管理者として **Windows PowerShell ISE** を起動し、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、以下を実行して PowerShellGet モジュールの最新バージョンをインストールします (確認を求められたら **「はい」** を選択します)。
 
@@ -213,3 +214,8 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境に Azure V
 1. ストレージ アカウント ブレードの **「ファイル サービス」** セクションで **「ファイル共有」** を選択し、ファイル共有のリストで **「az140-22a-profiles」** を選択します。 
 1. **az140-22a-profiles** ブレードで、そのコンテンツに、**ADATUM\\aaduser1** アカウントのセキュリティ識別子 (SID) とそれに続く **_aaduser1** サフィックスの組み合わせで構成される名前のフォルダーが含まれていることを確認します。
 1. 前の手順で特定したフォルダーを選択し、**Profile_aaduser1.vhd** という名前の 1 つのファイルが含まれていることに注意してください。
+
+#### タスク 4: Azure ラボ リソースを削除する
+
+1. [Azure portal を使用した Azure Active Directory ドメイン サービスの管理対象ドメインの削除](https://docs.microsoft.com/ja-jp/azure/active-directory-domain-services/delete-aadds)で説明されている手順に従って、Azure AD DS のデプロイを削除します。
+1. [Azure Resource Manager リソース グループとリソースの削除](https://docs.microsoft.com/ja-jp/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-portal) で説明されている手順に従って、このコースの Azure AD DS ラボでプロビジョニングしたすべての Azure リソース グループを削除します。

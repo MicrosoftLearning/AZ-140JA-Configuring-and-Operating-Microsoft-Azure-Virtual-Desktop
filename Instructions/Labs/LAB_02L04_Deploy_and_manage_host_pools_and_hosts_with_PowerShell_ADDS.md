@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: PowerShell を使用してホスト プールとホストをデプロイおよび管理する'
     module: 'モジュール 2: WVD インフラストラクチャを実装する'
@@ -199,7 +199,7 @@ Active Directory ドメイン サービス (AD DS) 環境で PowerShell を使�
 1. **az140-24-p3-0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、以下を実行して PowerShellGet モジュールの最新バージョンをインストールします (確認を求められたら **「はい」** を選択します)。
 
    ```powershell
-   [Net.ServicePointManager]::SecurityProtocol = 「Net.SecurityProtocolType」::Tls12
+   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
    Install-Module -Name PowerShellGet -Force -SkipPublisherCheck
    ```
 
@@ -273,7 +273,7 @@ Active Directory ドメイン サービス (AD DS) 環境で PowerShell を使�
    $name = 'Microsoft Word'
    $filePath = 'C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE'
    $iconPath = 'C:\Program Files\Microsoft Office\Root\VFS\Windows\Installer\{90160000-000F-0000-1000-0000000FF1CE}\wordicon.exe'
-   New-AzWvdApplication -GroupName $appGroupName -Name $name -ResourceGroupName $resourceGroupName -Filepath $filePath -IconPath $iconPath -IconIndex 0 -CommandLineSetting 'DoNotAllow' -ShowInPortal:$true
+   New-AzWvdApplication -GroupName $appGroupName -Name $name -ResourceGroupName $resourceGroupName -FriendlyName $name -Filepath $filePath -IconPath $iconPath -IconIndex 0 -CommandLineSetting 'DoNotAllow' -ShowInPortal:$true
    ```
 
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 コンソールで、次のコマンドを実行して Microsoft Word を公開します。
