@@ -118,7 +118,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
 1. **az140-25-vm0** へのリモート デスクトップ セッション内で、Microsoft Edge ウィンドウに切り替え、[リモート デスクトップ WebRTC リダイレクター サービスのダウンロード ページ](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE4AQBt)を参照して、インストーラー パッケージを **C:\\Allfiles\\Labs\\02** フォルダーに保存します。
 1. **az140-25-vm0** へのリモート デスクトップセッション内で、ファイル エクスプローラーを起動し、**C:\\Allfiles\\Labs\\02** フォルダーに移動し、新しくダウンロードしたインストーラーをダブルクリックして、既定の設定でインストールを実行します。
 1. **az140-25-vm0** へのリモート デスクトップ セッション内で、Microsoft Edge で、以下のタイトルのドキュメント ページを参照します。
-Teams デスクトップアプリを VM(https://docs.microsoft.com/ja-jp/microsoftteams/teams-for-vdi#deploy-the-teams-desktop-app-to-the-vm) に展開し、**64 ビット バージョン**のリンクをクリックして、プロンプトが表示されたら、**Teams_windows_x64.msi** ファイルを **C:\\Allfiles\\Labs\\02** フォルダーに保存します。
+[に展開し Teams デスクトップアプリを VM](https://docs.microsoft.com/ja-jp/microsoftteams/teams-for-vdi#deploy-the-teams-desktop-app-to-the-vm)、**64 ビット バージョン**のリンクをクリックして、プロンプトが表示されたら、**Teams_windows_x64.msi** ファイルを **C:\\Allfiles\\Labs\\02** フォルダーに保存します。
 1. **az140-25-vm0** へのリモート デスクトップ セッション内で、「**管理者: C:\windows\system32\cmd.exe**」 ウィンドウで、コマンド プロンプトから次のコマンドを実行して、Microsoft Teams のマシンごとのインストールを実行します。
 
    ```cmd
