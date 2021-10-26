@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: セッション ホスト イメージを作成および管理する (AD DS)'
     module: 'モジュール 2: WVD インフラストラクチャを実装する'
@@ -68,7 +68,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
      -TemplateParameterFile $HOME/az140-25_azuredeployvm25.parameters.json
    ```
 
-   > **注**: デプロイが完了するのを待ちますが、代わりに次の演習に進みます。デプロイには約 10 分間かかります。
+   > **注**: 次の演習を進める前に、デプロイが完了するのを待ちます。デプロイには約 10 分間かかります。
 
 #### タスク 2: Azure Virtual Desktop ホスト イメージを構成する
 
