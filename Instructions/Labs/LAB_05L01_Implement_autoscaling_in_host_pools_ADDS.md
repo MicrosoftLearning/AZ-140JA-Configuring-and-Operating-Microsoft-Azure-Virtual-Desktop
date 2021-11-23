@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: ホスト プールに自動スケールを実装する (AD DS)'
     module: 'モジュール: WVD インフラストラクチャを監視および保守する'
@@ -107,7 +107,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、以下を実行して、このラボで使用する Azure Log Analytics ワークスペースを作成します。
 
    ```powershell
-   New-AzOperationalInsightsWorkspace -Location $location -Name $workspaceName -Sku Standard -ResourceGroupName $resourceGroupName
+   New-AzOperationalInsightsWorkspace -Location $location -Name $workspaceName -ResourceGroupName $resourceGroupName
    ```
 
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 で、**C:\\Allfiles\\Labs\\05\\CreateOrUpdateAzAutoAccount.ps1** スクリプトを開き、**82** 行目と **86** 行目の間のコードを次のように複数行のコメントで囲みます。
@@ -266,7 +266,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
 >**注**: 自動スケールやその他の Azure Virtual Desktop イベントを分析するには、Log Analytics を使用できます。
 
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示している Microsoft Edge ウィンドウで、**Log Analytics ワークスペース**を検索して選択し、**「Log Analytics ワークスペース」** ブレードで、このラボで使用されている Azure Log Analytics ワークスペースを表すエントリを選択します (名前は **az140-workspace-51** プレフィックスで始まります)。
-1. 「Log Analytics ワークスペース」 ブレードの左側の垂直メニューの **「全般」** セクションで、**「ログ」** をクリックし、**「Log Analytics へようこそ」** ペインで **「はじめに」** をクリックします。
+1. 「Log Analytics ワークスペース」 ブレードの左側の垂直メニューの **「全般」** セクションで、**「ログ」** をクリックし、必要に応じて、**「Log Analytics へようこそ」** ペインで **「クエリ」** をクリックします。
 1. **「クエリ」** ペインの左側にある **「すべてのクエリ」** 垂直メニューで、**「Azure Virtual Desktop」** を選択し、事前定義されたクエリを確認します。
 1. **「クエリ」** ペインを閉じます。これにより、**「新しいクエリ 1」** タブが自動的に表示されます。
 1. 「クエリ」 ウィンドウで、次のクエリを貼り付け、**「実行」** をクリックして、このラボで使用されているホスト プールのすべてのイベントを表示します。
@@ -306,6 +306,8 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
    | where logmessage_s contains "ERROR:" or logmessage_s contains "WARN:"
    | project TimeStampUTC = TimeGenerated, TimeStampLocal = TimeStamp_s, HostPool = hostpoolName_s, LineNumAndMessage = logmessage_s, AADTenantId = TenantId
    ```
+
+>**注**: `TenantId` に関するエラーメッセージを無視します
 
 ### 演習 3: ラボでプロビジョニングされた Azure VM を停止および割り当て解除する
 

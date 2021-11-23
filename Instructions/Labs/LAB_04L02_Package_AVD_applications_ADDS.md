@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: Azure Virtual Desktop アプリケーション (AD DS) のパッケージ化'
     module: 'モジュール 4: ユーザーの環境とアプリを管理する'
@@ -155,7 +155,7 @@ Azure Virtual Desktop アプリケーションを Active Directory ドメイン 
 
 1. **az140-cl-vm42** へのリモート デスクトップ セッション内で、**Microsoft Edge** を起動して、**https://github.com/microsoft/XmlNotepad** にアクセスします。
 1. **microsoft/XmlNotepad** **readme.md** ページで、[スタンドアロンのダウンロード可能なインストーラー](http://www.lovettsoftware.com/downloads/xmlnotepad/xmlnotepadsetup.zip)のダウンロードリンクを選択し、圧縮されたインストールファイルをダウンロードします。
-1. **az140-cl-vm42** へのリモート デスクトップ セッション内で、ファイル エクスプローラーを起動し、**ダウンロード** フォルダーに移動し、圧縮ファイルを開き、そのコンテンツをコピーして、ディレクトリ **C:\\AllFiles\\Labs\\04\\** に貼り付けます。 
+1. **az140-cl-vm42** へのリモート デスクトップ セッション内で、ファイル エクスプローラーを起動し、**ダウンロード** フォルダーに移動し、圧縮ファイルを開き、圧縮ファイルのフォルダ－から、そのコンテンツをコピーして、ディレクトリ **C:\\AllFiles\\Labs\\04\\** に貼り付けます。 
 
 #### タスク 6: MSIX パッケージ ツールをインストールする
 
@@ -257,7 +257,7 @@ Azure Virtual Desktop アプリケーションを Active Directory ドメイン 
 
 #### タスク 2: MSIXアプリ アタッチ イメージを作成する
 
-1. **az140-cl-vm42** へのリモート デスクトップ セッション内で、**Microsoft Edge** を起動し、**https://aka.ms/msixmgr** を参照し、**msixmgr.zip** ファイルを開くか保存するかを確認するメッセージが表示されたら、**「保存」** をクリックします。これにより、MSIX mgr ツール アーカイブが **Downloads** フォルダーにダウンロードされます。
+1. **az140-dc-vm42** へのリモート デスクトップ セッション内で、Microsoft Edge を起動して、**https://aka.ms/msixmgr** にアクセスします。これにより、**msixmgr.zip** ファイル (MSIX mgr ツール アーカイブ) が **Downloads** フォルダーにダウンロードされます。
 1. ファイル エクスプローラーで、**ダウンロード** フォルダーに移動し、圧縮ファイルを開いて、**x64** フォルダーの内容を **C:\\AllFiles\\Labs\\04** フォルダーにコピーします。 
 1. **az140-cl-vm42** へのリモート デスクトップ セッション内で、管理者として **Windows PowerShell ISE** を起動し、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次のコマンドを実行して、MSIX アプリ アタッチ イメージとして機能する VHD ファイルを作成します。
 
@@ -280,6 +280,8 @@ Azure Virtual Desktop アプリケーションを Active Directory ドメイン 
    Format-Volume -FileSystem NTFS -Confirm:$false -DriveLetter $partition.DriveLetter -Force
    ```
 
+   > **注**: F: ドライブをフォーマットするように求めるポップアップウィンドウが表示された場合は、**「キャンセル」**を選択します。
+
 1. 「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次のコマンドを実行して、MSIX ファイルをホストするフォルダー構造を作成し、前のタスクで作成した MSIX パッケージをその中に解凍します。
 
    ```powershell
@@ -289,7 +291,7 @@ Azure Virtual Desktop アプリケーションを Active Directory ドメイン 
    .\msixmgr.exe -Unpack -packagePath .\$appName.msix -destination "$($partition.DriveLetter):\Apps" -applyacls
    ```
 
-1. **az140-cl-vm42** へのリモート デスクトップ セッション内で、ファイル エクスプローラーで、**F:\\Apps** フォルダーに移動し、その内容を確認します。
+1. **az140-cl-vm42** へのリモート デスクトップ セッション内で、ファイル エクスプローラーで、**F:\\Apps** フォルダーに移動し、その内容を確認します。フォルダーへのアクセスを求めるプロンプトが表示されたら、**「続行」**を選択します。
 1. **az140-cl-vm42** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 コンソールで、次のコマンドを実行して、MSIX イメージとして機能する VHD ファイルをマウント解除成します。
 
    ```powershell
@@ -440,7 +442,6 @@ Azure Virtual Desktop アプリケーションを Active Directory ドメイン 
 
 1. **az140-cl-vm42** へのリモート デスクトップセッション内で、Azure portal を表示している Microsoft Edge ウィンドウで、「**Azure Virtual Desktop**」を検索して選択し、**「Azure Virtual Desktop」** ブレードの左側の垂直メニューの **「管理」** セクションで、**「ホスト プール」** を選択します。
 1. 「**Azure Virtual Desktop \| ホスト プール」** ブレードで、ホスト プールのリストから **az140-21-hp1** エントリを選択します。
-1. 左側の垂直メニューの **az140-21-hp1** ホスト プール エントリの **「設定」** sセクションで、**「プロパティ」** を選択します。
 1. 「**az140-21-hp1 \| プロパティ」** ブレードの左側の垂直メニューの **「管理」** セクションで、**「MSIX パッケージ」** を選択します。
 1. 「**az140-21-hp1 \| MSIX パッケージ**」 ブレードで、**「+ 追加」** をクリックします。
 1. **「MSIX パッケージの追加」** ブレードの **「MSIX イメージのパス」** テキストボックスに、**XmlNotepad.vhd** ファイルへのパスを `\\<storage-account-name>.file.core.windows.net\az140-42-msixvhds\packages\XmlNotepad.vhd` (`<storage-account-name>` プレースホルダーを **az140-42-msixvhds** ファイル共有をホストするストレージ アカウントの名前に置き換えます) の形式で入力し、**「追加」** をクリックします。

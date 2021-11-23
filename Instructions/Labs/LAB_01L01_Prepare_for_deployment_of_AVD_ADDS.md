@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: Azure Virtual Desktop (AD DS) のデプロイを準備する'
     module: 'モジュール 1: AVD アーキテクチャを計画する'
@@ -129,6 +129,9 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 #### タスク 1: Azure VM のデプロイで利用可能な DNS 名を特定する
 
 1. ラボ コンピューターから、Web ブラウザーを起動し、[Azure portal](https://portal.azure.com) に移動し、このラボで使用するサブスクリプションの所有者ロールを持つユーザー アカウントの資格情報を指定してサインインします。
+1. Azure portal を表示している Web ブラウザーで、「**概要**」ブレードに戻り、左側の垂直メニューバーの「**管理**」セクションで、「**プロパティ**」をクリックします。
+1. Azure AD テナントの「**プロパティ**」ブレードで、ブレードの一番下で、「**セキュリティ詳細の管理**」リンクをクリックします。
+1. 「**セキュリティ既定値の有効化**」ブレードで、必要に応じて、「**いいえ**」を選択し、「**私の組織は条件付きアクセスを使用しています**」チェックボックスを選択して、「**保存**」を選択します。
 1. Azure で、検索テキストボックスのすぐ右にあるツールバーアイコンを選択して、**Cloud Shell** ペインを表示します。
 1. **Bash** や **PowerShell** のどちらかを選択するためのプロンプトが表示されたら、**PowerShell** を選択します。 
 
@@ -176,7 +179,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 
 #### タスク 3: Azure Resource Manager クイックスタート テンプレートを使用して Windows 10 を実行する Azure VM をデプロイする
 
-1. ラボ コンピューターの Azure portal を表示するWebブラウザーで、Cloud Shell ペインの PowerShell セッションから、以下を実行して、前のタスクで作成した **az140-adds-vnet11** という名前の仮想ネットワークに **cl-Subnet** という名前のサブネットを追加します。
+1. ラボ コンピューターの Azure portal を表示するWebブラウザーで、Cloud Shell ペインの PowerShell セッションを開き、以下を実行して、前のタスクで作成した **az140-adds-vnet11** という名前の仮想ネットワークに **cl-Subnet** という名前のサブネットを追加します。
 
    ```powershell
    $resourceGroupName = 'az140-11-RG'
@@ -394,7 +397,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」スクリプト ペインから、以下を実行して、TLS 1.2 を有効にします。
 
    ```powershell
-   New-Item 'HKLM:\SOFTWARE\WOW6432Node\Microsoft.NETFramework\v4.0.30319' -Force | Out-Null
+   New-Item 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v4.0.30319' -Force | Out-Null
    New-ItemProperty -path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v4.0.30319' -name 'SystemDefaultTlsVersions' -value '1' -PropertyType 'DWord' -Force | Out-Null
    New-ItemProperty -path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v4.0.30319' -name 'SchUseStrongCrypto' -value '1' -PropertyType 'DWord' -Force | Out-Null
    New-Item 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319' -Force | Out-Null
