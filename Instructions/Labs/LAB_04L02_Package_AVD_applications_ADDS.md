@@ -280,7 +280,7 @@ Azure Virtual Desktop アプリケーションを Active Directory ドメイン 
    Format-Volume -FileSystem NTFS -Confirm:$false -DriveLetter $partition.DriveLetter -Force
    ```
 
-   > **注**: F: ドライブをフォーマットするように求めるポップアップウィンドウが表示された場合は、**「キャンセル」**を選択します。
+   > **注**: F: ドライブをフォーマットするように求めるポップアップウィンドウが表示された場合は、**「キャンセル」** を選択します。
 
 1. 「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次のコマンドを実行して、MSIX ファイルをホストするフォルダー構造を作成し、前のタスクで作成した MSIX パッケージをその中に解凍します。
 
@@ -291,7 +291,7 @@ Azure Virtual Desktop アプリケーションを Active Directory ドメイン 
    .\msixmgr.exe -Unpack -packagePath .\$appName.msix -destination "$($partition.DriveLetter):\Apps" -applyacls
    ```
 
-1. **az140-cl-vm42** へのリモート デスクトップ セッション内で、ファイル エクスプローラーで、**F:\\Apps** フォルダーに移動し、その内容を確認します。フォルダーへのアクセスを求めるプロンプトが表示されたら、**「続行」**を選択します。
+1. **az140-cl-vm42** へのリモート デスクトップ セッション内で、ファイル エクスプローラーで、**F:\\Apps** フォルダーに移動し、その内容を確認します。フォルダーへのアクセスを求めるプロンプトが表示されたら、**「続行」** を選択します。
 1. **az140-cl-vm42** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 コンソールで、次のコマンドを実行して、MSIX イメージとして機能する VHD ファイルをマウント解除成します。
 
    ```powershell
