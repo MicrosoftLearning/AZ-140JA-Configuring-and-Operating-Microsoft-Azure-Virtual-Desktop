@@ -122,11 +122,12 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 
 この演習の主なタスクは次のとおりです:
 
-1. Azure VM のデプロイで利用可能な DNS 名を特定する
+1. Azure VM のデプロイの準備
 1. Azure Resource Manager QuickStart テンプレートを使用して、AD DS ドメイン管理者を実行する Azure VM をデプロイする
 1. Azure Resource Manager クイックスタート テンプレートを使用して Windows 10 を実行する Azure VM をデプロイする
+1. Azure Bastion をデプロイする
 
-#### タスク 1: Azure VM のデプロイで利用可能な DNS 名を特定する
+#### タスク 1: Azure VM のデプロイの準備
 
 1. ラボ コンピューターから、Web ブラウザーを起動し、[Azure portal](https://portal.azure.com) に移動し、このラボで使用するサブスクリプションの所有者ロールを持つユーザー アカウントの資格情報を指定してサインインします。
 1. Azure portal を表示している Web ブラウザーで、「**概要**」ブレードに戻り、左側の垂直メニューバーの「**管理**」セクションで、「**プロパティ**」をクリックします。
@@ -137,28 +138,19 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 
    >**注**: **Cloud Shell** を初めて起動し、「**ストレージがマウントされていません**」というメッセージが表示された場合は、このラボで使用しているサブスクリプションを選択し、「**ストレージの作成**」 を選択します。 
 
-1. Cloud Shell ペインで次のコマンドを実行して、次のタスクで提供する必要がある使用可能な DNS ドメイン名前のプレフィックスを特定します (プレースホルダー `<custom-name>` を、グローバルに一意である可能性が高い任意の有効な DNS ホスト名に置き換え、プレースホルダー `<Azure_region>` を、Active Directory ドメイン コントローラーをホストする Azure VM をデプロイする Azure リージョンの名前に置き換えます)。
-
-   ```powershell
-   $location = '<Azure_region>'
-   Test-AzDnsAvailability -Location $location -DomainNameLabel <custom-name>
-   ```
-   > **注**: Azure VM をプロビジョニングできる Azure リージョンを特定するには、[https://azure.microsoft.com/ja-jp/regions/offers/](https://azure.microsoft.com/ja-jp/regions/offers/) を参照してください。
-
-1. コマンドが **True** を返したことを確認します。そうでない場合は、コマンドが **True** を返すまで、`<custom-name>` の異なる値で同じコマンドを再実行します。
-1. 功を奏した結果となった `<custom-name>` の値を記録します。この名前は、次のタスクで必要になります。
 
 #### タスク 2: Azure Resource Manager QuickStart テンプレートを使用して、AD DS ドメイン管理者を実行する Azure VM をデプロイする
 
-1. ラボ コンピューターの Azure portal を表示している Web ブラウザーで、Cloud Shell ペインの PowerShell セッションから、以下を実行してリソース グループを作成します。
+1. ラボ コンピューターの Azure portal を表示している Web ブラウザーの Cloud Shell ペインの PowerShell セッションで、以下を実行して、リソース グループを作成します (`<Azure_region>` プレースホルダーをたとえば、`eastus` などこのラボで使用する予定の Azure リージョンの名前に置き換えます)。
 
    ```powershell
+   $location = '<Azure_region>'
    $resourceGroupName = 'az140-11-RG'
    New-AzResourceGroup -Location $location -Name $resourceGroupName
    ```
 
 1. Azure portal で、**Cloud Shell** ウィンドウを閉じます。
-1. ラボ コンピューターから、同じ Web ブラウザー ウィンドウで、別の Web ブラウザー タブを開き、「新しいWindows VM の作成」 という名前のクイック スタート テンプレートに移動して、[新しい AD フォレスト、ドメイン、および DC を作成します](https://github.com/Azure/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain)。 
+1. ラボ コンピューターの同じブラウザー ウィンドウで、別な Web ブラウザー ウィンドウを開き、[新しい Windows VM を作成し、新しい AD Forest、Domain、DC を作成する](https://github.com/az140mp/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain)という名前の QuickStart テンプレートのカスタマイズされたバージョンに移動します。 
 1. 「**新しい Windows VM を作成し、新しい AD フォレスト、ドメイン、DC を作成する**」 ページで、「**Azure に配置する**」 を選択します。これにより、ブラウザーが Azure portal の「**新しい AD フォレストで Azure VM を作成する**」ブレードに自動的にリダイレクトされます。
 1. 「**新しい AD フォレストで Azure VM を作成する**」 ブレードで、「**パラメーターの編集**」 を選択します。
 1. 「**パラメーターの編集**」 ブレードで、「**ロード ファイル**」 を選択し、「**開く**」 ダイアログ ボックスで、「**\\\\AZ-140\\AllFiles\\Labs\\01\\az140-11_azuredeploydc11.parameters.json**」 を選択し、「**開く**」 を選択してから、「**保存**」 を選択します。 
@@ -169,13 +161,10 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
    |サブスクリプション|このラボで使用する Azure サブスクリプションの名前|
    |リソース グループ|**az140-11-RG**|
    |ドメイン名|**adatum.com**|
-   |DNS プレフィックス|前のタスクで特定した DNS ホスト名|
 
 1. 「**新しい AD フォレストを使用して Azure VM を作成する**」 ブレードで、「**Review + create**」 を選択し、「**作成**」 を選択します。
 
    > **注**: 次の演習を進める前に、デプロイが完了するのを待ちます。これにはおよそ 15 分かかる場合があります。 
-
-   > **注**: デプロイが完了したら、**az140-adds-vnet11** 仮想ネットワークのブレードに移動し、その DNS カスタム構成が新しくデプロイされた Azure VM の IP アドレス (10.0.0.4) に設定されていることを確認し、設定されていない場合は手動で追加します 。
 
 #### タスク 3: Azure Resource Manager クイックスタート テンプレートを使用して Windows 10 を実行する Azure VM をデプロイする
 
@@ -204,8 +193,47 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
      -TemplateParameterFile $HOME/az140-11_azuredeploycl11.parameters.json
    ```
 
-   > **注**: デプロイが完了するのを待たず、代わりに次の演習に進みます。デプロイには約 10 分間かかります。
+   > **注**: デプロイが完了するのを待たずに、代わりに次のタスクに進みます。デプロイには約 10 分間かかります。
 
+#### タスク 4: Azure Bastion をデプロイする 
+
+> **注**: Azure Bastion を使用して、以前のタスクでデプロイしたパブリック エンドポイントなしで、Azure VM に接続できます。一方、オペレーティング システム レベルの資格情報をターゲットとするブルート フォース攻撃に対して保護します。
+
+> **注**: ブラウザーでポップアップ機能が有効になっていることを確認します。
+
+1. Azure portal を表示しているブラウザー ウィンドウで、別のタブを開き、ブラウザー タブで、Azure portal に移動します。
+1. Azure portal で、検索テキストボックスのすぐ右にあるツールバー アイコンを選択して「**Cloud Shell**」ペインを開きます。
+1. Cloud Shell ペインの PowerShell セッションで、以下を実行して、**AzureBastionSubnet** という名前のサブネットをこの演習の前半で作成した **az140-adds-vnet11** という名前の仮想ネットワークに追加します。
+
+   ```powershell
+   $resourceGroupName = 'az140-11-RG'
+   $vnet = Get-AzVirtualNetwork -ResourceGroupName $resourceGroupName -Name 'az140-adds-vnet11'
+   $subnetConfig = Add-AzVirtualNetworkSubnetConfig `
+     -Name 'AzureBastionSubnet' `
+     -AddressPrefix 10.0.254.0/24 `
+     -VirtualNetwork $vnet
+   $vnet | Set-AzVirtualNetwork
+   ```
+
+1. Cloud Shell ペインを閉じます。
+1. Azure portal で、**「Bastions」** を選択し、**Bastions** ブレードで、**「+ 作成」** を選択します。
+1. **Bastion の作成**ブレードの**基本** タブで、次の設定を指定して、**「確認および作成」** を選択します。
+
+   |設定|値|
+   |---|---|
+   |サブスクリプション|このラボで使用する Azure サブスクリプションの名前|
+   |リソース グループ|**az140-11-RG**|
+   |名前|**az140-11-bastion**|
+   |リージョン|この演習の前のタスクでリソースにデプロイした Azure リージョンと同じです|
+   |階層|**Basic**|
+   |仮想ネットワーク|**az140-adds-vnet11**|
+   |サブネット|**AzureBastionSubnet (10.0.254.0/24)**|
+   |パブリック IP アドレス|**新規作成**|
+   |Public IP name|**az140-adds-vnet11-ip**|
+
+1. **Bastion の作成**ブレードの**確認および作成**タブで、**「作成」** を選択します。
+
+   > **注**: 次の演習を進める前に、デプロイが完了するのを待ちます。デプロイには約 5 分間かかります。
 
 ### 演習 2: AD DS フォレストを Azure AD テナントに統合する
   
@@ -220,12 +248,12 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 #### タスク 1: Azure AD と同期する AD DS ユーザーとグループを作成する
 
 1. ラボ コンピューターの Azure portal を表示する Web ブラウザーで、**仮想マシン**を検索して選択し、**「仮想マシン」** ブレードから **az140-dc-vm11** を選択します。
-1. **「az140-dc-vm11」** ブレードで、**「接続」** を選択し、ドロップダウン メニューで **「RDP」** を選択し、**「az140-vm11 \| 接続**」 ブレードの **「RDP」** タブの **「IP アドレス」** ドロップダウン リストで、**「ロード バランサ―の DNS 名」** エントリ、次に **「RDP ファイルをダウンロード」** を選択します。
-1. プロンプトが表示されたら、次の認証情報を入力します。
+1. **az140-dc-vm11** ブレードで、**「接続」** を選択し、ドロップダウン メニューで、**「Bastion」** を選択し、**「az140-dc-vm11 \| 接続」** ブレードの **Bastion** タブで、**「Bastion の使用」** を選択します。
+1. プロンプトが表示されたら、次の資格情報を入力して、**「接続」** を選択します。
 
    |設定|値|
    |---|---|
-   |ユーザー名|**ADATUM\\Student**|
+   |ユーザー名|**Student**|
    |パスワード|**Pa55w.rd1234**|
 
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、**Windows PowerShell ISE** を管理者として起動します。

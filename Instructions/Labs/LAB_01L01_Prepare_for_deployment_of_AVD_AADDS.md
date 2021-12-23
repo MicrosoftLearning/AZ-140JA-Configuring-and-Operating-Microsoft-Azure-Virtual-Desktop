@@ -259,11 +259,13 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境での Azur
 
 1. 前述の 2 つの手順を繰り返して、**wvdaadmin1** ユーザー アカウントのパスワードをリセットします。
 
+
 ### 演習 2: Azure AD DS ドメイン環境を構築する
   
 この演習の主なタスクは次のとおりです:
 
 1. Azure Resource Manager クイックスタート テンプレートを使用して Windows 10 を実行する Azure VM をデプロイする
+1. Azure Bastion をデプロイする
 1. Azure AD DS ドメインの既定の構成を確認する
 1. Azure AD DS と同期する AD DS ユーザーとグループを作成する
 
@@ -298,7 +300,48 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境での Azur
    > **注**: デプロイには約 10 分間かかります。次のタスクを進める前に、デプロイが完了するのを待ちます。 
 
 
-#### タスク 2: Azure AD DS ドメインの既定の構成を確認する
+#### タスク 2: Azure Bastion をデプロイする 
+
+> **注**: Azure Bastion を使用して、以前のタスクでデプロイしたパブリック エンドポイントなしで、Azure VM に接続できます。一方、オペレーティング システム レベルの資格情報をターゲットとするブルート フォース攻撃に対して保護します。
+
+> **注**: ブラウザーでポップアップ機能が有効になっていることを確認します。
+
+1. Azure portal を表示しているブラウザー ウィンドウで、別のタブを開き、ブラウザー タブで、Azure portal に移動します。
+1. Azure portal で、検索テキストボックスのすぐ右にあるツールバー アイコンを選択して「**Cloud Shell**」ペインを開きます。
+1. Cloud Shell ペインの PowerShell セッションで、以下を実行して、**AzureBastionSubnet** という名前のサブネットをこの演習の前半で作成した **az140-adds-vnet11** という名前の仮想ネットワークに追加します。
+
+   ```powershell
+   $resourceGroupName = 'az140-11a-RG'
+   $vnet = Get-AzVirtualNetwork -ResourceGroupName $resourceGroupName -Name 'az140-aadds-vnet11a'
+   $subnetConfig = Add-AzVirtualNetworkSubnetConfig `
+     -Name 'AzureBastionSubnet' `
+     -AddressPrefix 10.10.254.0/24 `
+     -VirtualNetwork $vnet
+   $vnet | Set-AzVirtualNetwork
+   ```
+
+1. Cloud Shell ペインを閉じます。
+1. Azure portal で、「**Bastions**」を選択し、**Bastions** ブレードで、「**+ 作成**」を選択します。
+1. **Bastion の作成**ブレードの**基本** タブで、次の設定を指定して、「**確認および作成**」を選択します。
+
+   |設定|値|
+   |---|---|
+   |サブスクリプション|このラボで使用する Azure サブスクリプションの名前|
+   |リソース グループ|**az140-11a-RG**|
+   |名前|**az140-11a-bastion**|
+   |リージョン|この演習の前のタスクでリソースにデプロイした Azure リージョンと同じです|
+   |階層|**Basic**|
+   |仮想ネットワーク|**az140-aadds-vnet11a**|
+   |サブネット|**AzureBastionSubnet (10.10.254.0/24)**|
+   |パブリック IP アドレス|**新規作成**|
+   |Public IP name|**az140-aadds-vnet11a-ip**|
+
+1. **Bastion の作成**ブレードの**確認および作成**タブで、「**作成**」を選択します。
+
+   > **注**: この演習の次のタスクに進む前に、デプロイが完了するのを待ちます。デプロイには約 5 分間かかります。
+
+
+#### タスク 3: Azure AD DS ドメインの既定の構成を確認する
 
 > **注**: 新しく AzureAD DS に参加したコンピューターにサインインする前に、サインインする予定のユーザーアカウントを **AAD DC 管理者** Azure AD グループに追加する必要があります。この Azure AD グループは、Azure AD DS インスタンスをプロビジョニングした Azure サブスクリプションに関連付けられた Azure AD テナントに自動的に作成されます。
 
@@ -315,12 +358,12 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境での Azur
 
 1. 「Cloud Shell」 ペインを閉じます。
 1. ラボ コンピューターの Azure portal で、**仮想マシン**を検索して選択し、**「仮想マシン」** ブレードから **az140-cl-vm11a** エントリを選択します。これにより、**az140-cl-vm11a** ブレードが開きます。
-1. **「az140-cl-vm11a」** ブレードで、**「接続」**を選択し、ドロップダウン メニューで **「RDP」** を選択し、**「az140-cl-vm11a \| 接続」** ブレードの **「RDP」** タブの **「IP アドレス」** ドロップダウン リストで、**「パブリック IP アドレス」** エントリ、次に **「RDP ファイルをダウンロード」** を選択します。
-1. プロンプトが表示されたら、次の認証情報を入力します。
+1. **az140-cl-vm11a** ブレードで、「**接続**」を選択し、ドロップダウン メニューで、「**Bastion**」を選択し、「**az140-cl-vm11a \| 接続**」ブレードの **Bastion** タブで、「**Bastion の使用**」を選択します。
+1. プロンプトが表示されたら、次の資格情報を入力して、「**接続**」を選択します。
 
    |設定|値|
    |---|---|
-   |ユーザー名|**ADATUM\\aadadmin1**|
+   |ユーザー名|**Student@adatum.com**|
    |パスワード|**Pa55w.rd1234**|
 
 1. リモート デスクトップから **az140-cl-vm11a** Azure VMで、管理者として **Windows PowerShell ISE** を起動し、「**管理者: Windows PowerShell ISE** スクリプト」 ペインで、次を実行して Active Directory と DNS 関連のリモート サーバー管理ツールをインストールします。
@@ -342,7 +385,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境での Azur
 1. **Active Directory ユーザーとコンピューター** コンソールの **AADDC ユーザー** OU で、**aadadmin1** ユーザー アカウントを選択し、その **「プロパティ」** ダイアログ ボックスを表示して、**「アカウント」** タブに切り替えます。ユーザー プリンシパル名のサフィックスは、プライマリ Azure AD DNS ドメイン名と一致し、変更できないことに注意してください。 
 1. **Active Directory ユーザーとコンピューター** コンソールで、**ドメイン コントローラー**組織単位の内容を確認し、ランダムに生成された名前を持つ 2 つのドメイン コントローラーのコンピューター アカウントが含まれていることに注意してください。 
 
-#### タスク 3: Azure AD DS と同期する AD DS ユーザーとグループを作成する
+#### タスク 4: Azure AD DS と同期する AD DS ユーザーとグループを作成する
 
 1. リモート デスクトップ内で **az140-cl-vm11a** Azure VM に移動し、Microsoft Edge を起動し、[Azure portal](https://portal.azure.com) に移動し、パスワードとして **Pa55w.rd1234** を使用して **aadadmin1** ユーザー アカウントのユーザー プリンシパル名を指定してサインインします。
 1. Azure portal で **Cloud Shell** を開きます。
