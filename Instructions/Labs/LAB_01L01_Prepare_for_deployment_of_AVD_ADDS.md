@@ -1,10 +1,10 @@
----
+﻿---
 lab:
-    title: 'ラボ: Azure Virtual Desktop (AD DS) のデプロイを準備する'
+    title: 'ラボ: Azure Virtual Desktop (AD DS) のデプロイの準備'
     module: 'モジュール 1: AVD アーキテクチャを計画する'
 ---
 
-# ラボ - Azure Virtual Desktop (AD DS) のデプロイを準備する
+# ラボ - Azure Virtual Desktop (AD DS) のデプロイの準備
 # 受講生用ラボ マニュアル
 
 ## ラボの依存関係
@@ -24,7 +24,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 
 ## 目標
   
-このラボを終了すると、下記ができるようになります。
+このラボを完了すると、次のことができるようになります。
 
 - Azure VM を使用して Active Directory Domain Services (AD DS) シングルドメイン フォレストをデプロイする
 - AD DS フォレストを Azure Active Directory (Azure AD) テナントに統合する
@@ -35,11 +35,11 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 -  \\\\AZ-140\\AllFiles\\Labs\\01\\az140-11_azuredeploycl11.json
 -  \\\\AZ-140\\AllFiles\\Labs\\01\\az140-11_azuredeploycl11.parameters.json
 
-## 手順
+## 説明
 
 ### 演習 0: vCPU クォータの数を増やす
 
-この演習の主なタスクは次のとおりです:
+この演習の主なタスクは次のとおりです。
 
 1. 現在の vCPU 使用状況を識別する
 1. vCPU クォータの増加を要求する
@@ -66,7 +66,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 
    >**注**: 「状態」 が 「**登録済み**」 と表示されていることを確認します。そうでない場合は、数分待ってから、この手順を繰り返します。
 
-1. Azure portal の **CloudShell** の PowerShell セッションで、次のコマンドを実行して、vCPU の現在の使用状況と、**StandardDSv3Family** および **StandardBSFamily** Azure VMの対応する制限を特定します (`<Azure_region>` プレースホルダーを Azure の名前に置き換えます。たとえば、`eastus`)。
+1. Azure portal の **Cloud Shell** の PowerShell セッションで、次のコマンドを実行して、vCPU の現在の使用状況と、**StandardDSv3Family** および **StandardBSFamily** Azure VMの対応する制限を特定します (`<Azure_region>` プレースホルダーを Azure の名前に置き換えます。たとえば、`eastus`)。
 
    ```powershell
    $location = '<Azure_region>'
@@ -97,30 +97,30 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 
    |設定|値|
    |---|---|
-   |展開モデル|**リソース マネージャー**|
+   |デプロイ モデル|**リソース マネージャー**|
    |場所|このラボで使用する予定の Azure リージョンの名前|
-   |Types|**Standard**|
+   |種類|**Standard**|
    |Standard|**BS シリーズ**|
-   |新しい vCPU 制限|the new limit|
+   |新しい vCPU 制限|新しい制限|
    |Standard|**DSv3 シリーズ**|
-   |新しい vCPU 制限|the new limit|
+   |新しい vCPU 制限|新しい制限|
 
    >**注**: この場合、**BS シリーズ** Azure VM の使用は、ラボ環境の実行コストを最小限に抑えることを目的としています。これは、Azure Virtual Desktop シナリオでの **BS シリーズ** Azure VM の使用目的を表すことを意図したものではありません。
 
-1. **「新しいサポート要求」** ブレードの **「詳細」** タブに戻り、次のように指定し、**「次へ: Review + create >**」 を選択します。
+1. **「新しいサポート要求」** ブレードの **「詳細」** タブに戻り、次のように指定し、**「次へ: 確認および作成 >**」 を選択します。
 
    |設定|値|
    |---|---|
    |重要度|**C - 最小限の影響**|
    |ご希望の連絡方法|ご希望のオプションを選択し、連絡先の詳細を入力してください|
     
-1. **「新しいサポート要求」** ブレードの **「Review + create」** タブで、**「作成」** を選択します。
+1. **「新しいサポート要求」** ブレードの **「確認および作成」** タブで、**「作成」** を選択します。
 
    > **注**: この範囲の vCPU 内のクォータ増加要求は、通常、数時間以内に完了します。ただし、待機することなく、このラボを完了できます。
 
 ### 演習 1: Active Directory Domain Services (AD DS) ドメインをデプロイする
 
-この演習の主なタスクは次のとおりです:
+この演習の主なタスクは次のとおりです。
 
 1. Azure VM のデプロイの準備
 1. Azure Resource Manager QuickStart テンプレートを使用して、AD DS ドメイン管理者を実行する Azure VM をデプロイする
@@ -133,7 +133,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 1. Azure portal を表示している Web ブラウザーで、「**概要**」ブレードに戻り、左側の垂直メニューバーの「**管理**」セクションで、「**プロパティ**」をクリックします。
 1. Azure AD テナントの「**プロパティ**」ブレードで、ブレードの一番下で、「**セキュリティ詳細の管理**」リンクをクリックします。
 1. 「**セキュリティ既定値の有効化**」ブレードで、必要に応じて、「**いいえ**」を選択し、「**私の組織は条件付きアクセスを使用しています**」チェックボックスを選択して、「**保存**」を選択します。
-1. Azure で、検索テキストボックスのすぐ右にあるツールバーアイコンを選択して、**Cloud Shell** ペインを表示します。
+1. Azure portal で、検索テキストボックスのすぐ右にあるツールバー アイコンを選択して **「Cloud Shell」** ペインを開きます。
 1. **Bash** や **PowerShell** のどちらかを選択するためのプロンプトが表示されたら、**PowerShell** を選択します。 
 
    >**注**: **Cloud Shell** を初めて起動し、「**ストレージがマウントされていません**」というメッセージが表示された場合は、このラボで使用しているサブスクリプションを選択し、「**ストレージの作成**」 を選択します。 
@@ -151,7 +151,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 
 1. Azure portal で、**Cloud Shell** ウィンドウを閉じます。
 1. ラボ コンピューターの同じブラウザー ウィンドウで、別な Web ブラウザー ウィンドウを開き、[新しい Windows VM を作成し、新しい AD Forest、Domain、DC を作成する](https://github.com/az140mp/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain)という名前の QuickStart テンプレートのカスタマイズされたバージョンに移動します。 
-1. 「**新しい Windows VM を作成し、新しい AD フォレスト、ドメイン、DC を作成する**」 ページで、「**Azure に配置する**」 を選択します。これにより、ブラウザーが Azure portal の「**新しい AD フォレストで Azure VM を作成する**」ブレードに自動的にリダイレクトされます。
+1. 「**新しい Windows VM を作成し、新しい AD フォレスト、ドメイン、DC を作成する**」 ページで、「**Azure にデプロイする**」 を選択します。これにより、ブラウザーが Azure portal の「**新しい AD フォレストで Azure VM を作成する**」ブレードに自動的にリダイレクトされます。
 1. 「**新しい AD フォレストで Azure VM を作成する**」 ブレードで、「**パラメーターの編集**」 を選択します。
 1. 「**パラメーターの編集**」 ブレードで、「**ロード ファイル**」 を選択し、「**開く**」 ダイアログ ボックスで、「**\\\\AZ-140\\AllFiles\\Labs\\01\\az140-11_azuredeploydc11.parameters.json**」 を選択し、「**開く**」 を選択してから、「**保存**」 を選択します。 
 1. 「**新しい AD フォレストを使用して Azure VM を作成する**」ブレードで、次の設定を指定します (他のユーザーには既存の値を残します)。
@@ -162,9 +162,9 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
    |リソース グループ|**az140-11-RG**|
    |ドメイン名|**adatum.com**|
 
-1. 「**新しい AD フォレストを使用して Azure VM を作成する**」 ブレードで、「**Review + create**」 を選択し、「**作成**」 を選択します。
+1. 「**新しい AD フォレストを使用して Azure VM を作成する**」 ブレードで、「**確認および作成**」 を選択し、「**作成**」 を選択します。
 
-   > **注**: 次の演習を進める前に、デプロイが完了するのを待ちます。これにはおよそ 15 分かかる場合があります。 
+   > **注**: 次の演習を進める前に、デプロイが完了するのを待ちます。15 分間程度かかる場合があります。 
 
 #### タスク 3: Azure Resource Manager クイックスタート テンプレートを使用して Windows 10 を実行する Azure VM をデプロイする
 
@@ -237,13 +237,13 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 
 ### 演習 2: AD DS フォレストを Azure AD テナントに統合する
   
-この演習の主なタスクは次のとおりです:
+この演習の主なタスクは次のとおりです。
 
-1. 10Azure AD と同期する AD DS ユーザーとグループを作成する
+1. Azure AD と同期する AD DS ユーザーとグループを作成する
 1. AD DS UPN サフィックスを構成する
 1. Azure AD との同期を構成するために使用する Azure AD ユーザーを作成する
-1. Azure AD Connect をインストールします。
-1. ハイブリッド Azure AD 参加の構成
+1. Azure AD Connect をインストールする
+1. ハイブリッド Azure AD 参加を構成する
 
 #### タスク 1: Azure AD と同期する AD DS ユーザーとグループを作成する
 
@@ -277,7 +277,9 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
    New-ADOrganizationalUnit 'WVDClients' -path 'DC=adatum,DC=com' -ProtectedFromAccidentalDeletion $false
    ```
 
-1. 「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次のコマンドを実行して、このラボで使用する Azure AD テナントに同期される AD DS ユーザー アカウントを作成します。
+1. 「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次のコマンドを実行して、このラボで使用する Azure AD テナントに同期される AD DS ユーザー アカウントを作成します (`<password>` プレースホルダーはランダムで複雑なパスワードに置き換えます)。
+
+   > **注**: 必ず使用したパスワードは覚えておいてください。このラボとその後のラボで必要になります。
 
    ```powershell
    $ouName = 'ToSync'
@@ -288,14 +290,14 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
    foreach ($counter in $userCount) {
      New-AdUser -Name $adUserNamePrefix$counter -Path $ouPath -Enabled $True `
        -ChangePasswordAtLogon $false -userPrincipalName $adUserNamePrefix$counter@$adUPNSuffix `
-       -AccountPassword (ConvertTo-SecureString 'Pa55w.rd1234' -AsPlainText -Force) -passThru
+       -AccountPassword (ConvertTo-SecureString <password> -AsPlainText -Force) -passThru
    } 
 
    $adUserNamePrefix = 'wvdadmin1'
    $adUPNSuffix = 'adatum.com'
    New-AdUser -Name $adUserNamePrefix -Path $ouPath -Enabled $True `
        -ChangePasswordAtLogon $false -userPrincipalName $adUserNamePrefix@$adUPNSuffix `
-       -AccountPassword (ConvertTo-SecureString 'Pa55w.rd1234' -AsPlainText -Force) -passThru
+       -AccountPassword (ConvertTo-SecureString <password> -AsPlainText -Force) -passThru
 
    Get-ADGroup -Identity 'Domain Admins' | Add-AdGroupMember -Members 'wvdadmin1'
    ```
@@ -391,12 +393,14 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 
 #### タスク 3: ディレクトリ同期の構成に使用される Azure AD ユーザーを作成する
 
-1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインから、次の操作を実行して、新しい Azure AD ユーザーを作成します。
+1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次のコマンドを実行して、新しい Azure AD ユーザーを作成します (`<password>` プレースホルダーはランダムで複雑なパスワードに置き換えます)。
+
+   > **注**: 必ず使用したパスワードは覚えておいてください。このラボとその後のラボで必要になります。:
 
    ```powershell
    $userName = 'aadsyncuser'
    $passwordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-   $passwordProfile.Password = 'Pa55w.rd1234'
+   $passwordProfile.Password = '<password>'
    $passwordProfile.ForceChangePasswordNextLogin = $false
    New-AzureADUser -AccountEnabled $true -DisplayName $userName -PasswordProfile $passwordProfile -MailNickName $userName -UserPrincipalName "$userName@$aadDomainName"
    ```
@@ -417,10 +421,10 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
    (Get-AzureADUser -Filter "MailNickName eq '$userName'").UserPrincipalName
    ```
 
-   > **注**: ユーザー プリンシパル名を記録します。これは、この演習の後半で必要になります。 
+   > **注**: ユーザー プリンシパル名を記録します。これついては、演習の後半で取り上げます。 
 
 
-#### タスク 4: Azure AD Connect をインストールします。
+#### タスク 4: Azure AD Connect をインストールする
 
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」スクリプト ペインから、以下を実行して、TLS 1.2 を有効にします。
 
@@ -453,7 +457,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
 1. **「ユーザーのサインイン」** ページで、**「パスワード ハッシュの同期」** のみ有効にして、**「次へ」** を選択します。
 1. **「Azure AD への接続」** ページで、前の演習で作成した **aadsyncuser** ユーザー アカウントの資格情報を使用して認証し、**「次へ」** を選択します。 
 
-   > **注**: この演習の前半で記録した **aadsyncuser** アカウントの userPrincipalName 属性を指定し、パスワードとして **Pa55w.rd1234** を指定します。
+   > **注**: この演習の前半で記録した **aadsyncuser** アカウントの userPrincipalName 属性を指定し、このラボで先ほど設定したパスワードをそのパスワードとして指定します。
 
 1. **「ディレクトリを接続する」** ページで、**adatum.com** フォレスト エントリの右側にある **「ディレクトリの追加」** ボタンを選択します。
 1. **「AD フォレスト アカウント」** ウィンドウで、**新しい AD アカウントを作成する**オプションが選択されていることを確認し、次の資格情報を指定して、**「OK」** を選択します。
