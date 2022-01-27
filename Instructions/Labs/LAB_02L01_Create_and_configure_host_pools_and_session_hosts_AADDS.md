@@ -109,7 +109,7 @@ Azure Active Directory ドメインサービス (Azure AD DS) 環境でホスト
    |組織単位パス|**OU=AADDC Computers,DC=adatum,DC=com**|
    |AD ドメインの UPN への参加|**aadadmin1@***<Azure_AD_domain_name>*|
    |パスワード|`<password>`|
-   |仮想マシン管理者アカウントのユーザー名|**受講生**|
+   |仮想マシン管理者アカウントのユーザー名|**student**|
    |仮想マシン管理者アカウントのパスワード|**Pa55w.rd1234**|
 
 1. **「ホスト プールの作成」** ブレードの **「ワークスペース」** タブで、次の設定を指定し、**「確認および作成」** を選択します。
