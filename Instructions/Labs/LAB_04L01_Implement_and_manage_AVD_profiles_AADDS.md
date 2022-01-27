@@ -23,7 +23,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境に Azure V
 
 ## 目標
   
-このラボを終了すると、下記ができるようになります。
+このラボを完了すると、次のことができるようになります。
 
 - Azure AD DS 環境で Azure Virtual Desktop 用プロファイル コンテナーを格納するために Azure Files を構成する
 - Azure AD DS 環境で Azure Virtual Desktop の FSLogix ベース プロファイルを実装および管理する
@@ -32,11 +32,11 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境に Azure V
 
 - なし
 
-## 手順
+## 説明
 
 ### 演習 1: Azure Virtual Desktop の FSLogix ベースのプロファイルを実装する
 
-この演習の主なタスクは次のとおりです:
+この演習の主なタスクは次のとおりです。
 
 1. Azure Virtual Desktop セッション ホスト VM でローカル管理者グループを構成する
 1. Azure Virtual Desktop セッション ホスト VM で FSLogix ベースのプロファイルを構成する
@@ -83,17 +83,11 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境に Azure V
    Restart-Computer -ComputerName $servers -Force -Wait
    ```
 
-1. スクリプトが完了するのを待ちます。これにはおよそ 3 分かかる場合があります。
+1. スクリプトが完了するのを待ちます。通常は 3 分ほどかかります。
 
 #### タスク 2: Azure Virtual Desktop セッション ホスト VM で FSLogix ベースのプロファイルを構成する
 
-1. **az140-cl-vm11a** へのリモート デスクトップ セッション内で、**az140-21-p1-0** へのリモート デスクトップ セッションを開始し、サインインを求められたら、次の資格情報を使用してサインインします。
-
-   |設定|値|
-   |---|---|
-   |ユーザー名|**ADATUM\wvdaadmin1**|
-   |パスワード|**Pa55w.rd1234**|
-
+1. **az140-cl-vm11a** へのリモート デスクトップ セッション内で、**az140-21-p1-0** へのリモート デスクトップ セッションを開始します。プロンプトが表示されたら、 **ADATUM\wvdaadmin1** ユーザー名と、このユーザー アカウントの作成時に設定したパスワードを使ってサインインします。 
 1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、Microsoft Edge を起動し、[FSLogix ダウンロード ページ](https://aka.ms/fslogix_download)を参照し、FSLogix 圧縮インストール バイナリをダウンロードして、**C:\\Source** フォルダーに抽出し、**x64\\Release** サブフォルダーに移動し、**FSLogixAppsSetup.exe** を使用して、Microsoft FSLogixApps をデフォルト設定でインストールします。
 
    > **注**: イメージがすでに含まれているかどうがにより、FXLogic のインストールは不要になる場合があります。FX Logix のインストールには、再起動が必要です。
