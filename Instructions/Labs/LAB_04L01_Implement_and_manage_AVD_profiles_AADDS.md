@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: Azure Virtual Desktop プロファイル (Azure AD DS) を実装および管理する'
     module: 'モジュール 4: ユーザーの環境とアプリを管理する'
@@ -52,7 +52,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境に Azure V
 
    |設定|値|
    |---|---|
-   |ユーザー名|**Student@adatum.com**|
+   |ユーザー名|**aadadmin1@adatum.com**|
    |パスワード|**Pa55w.rd1234**|
 
 1. **az140-cl-vm11a** へのリモートデスクトップセッション内で、「スタート」 メニューの **「Windows 管理ツール」** フォルダーに移動して展開し、**「Active Directory ユーザーとコンピューター」** を選択します。
@@ -135,7 +135,8 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境に Azure V
    New-ItemProperty -Path $profilesParentKey\$profilesChildKey -Name 'Enabled' -PropertyType DWord -Value 1
    New-ItemProperty -Path $profilesParentKey\$profilesChildKey -Name 'VHDLocations' -PropertyType MultiString -Value "\\$storageAccountName.file.core.windows.net\$fileShareName"
    ```
-
+   >**注** コマンドでエラーが発生した場合は、次の手順に進んでください。
+   
 1. **az140-21-p1** へのリモート デスクトップ セッション内で、**「スタート」** を右クリックし、右クリック メニューで **「ファイル名を指定して実行」** を選択し、**「ファイル名を指定して実行」** ダイアログ ボックスの **「開く」** テキストボックスに次のように入力し、**「OK」** を選択して **「ローカル ユーザーとグループ」** ウィンドウを起動します。
 
    ```cmd
@@ -168,6 +169,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境に Azure V
    ```
 
 1. **az140-21-p1-0** へのリモート デスクトップ セッション内で、管理者として **Windows PowerShell ISE** を起動し、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、次を実行して、**az140-21-p1-1** セッション ホストでプロファイル レジストリ設定を構成します。
+>**注**: <storageAccountName> をストレージ アカウントの実際の名前に置き換えます。
 
    ```powershell
    $profilesParentKey = 'HKLM:\SOFTWARE\FSLogix'
@@ -176,7 +178,7 @@ Azure Active Directory ドメイン サービス (Azure AD DS) 環境に Azure V
    Invoke-Command -ComputerName $server -ScriptBlock {
       New-Item -Path $using:profilesParentKey -Name $using:profilesChildKey –Force
       New-ItemProperty -Path $using:profilesParentKey\$using:profilesChildKey -Name 'Enabled' -PropertyType DWord -Value 1
-      New-ItemProperty -Path $using:profilesParentKey\$using:profilesChildKey -Name 'VHDLocations' -PropertyType MultiString -Value "\\$using:storageAccountName.file.core.windows.net\$using:fileShareName"
+      New-ItemProperty -Path $using:profilesParentKey\$using:profilesChildKey -Name 'VHDLocations' -PropertyType MultiString -Value "\\<storageAccountName>.file.core.windows.net\$using:fileShareName"
    }
    ```
 

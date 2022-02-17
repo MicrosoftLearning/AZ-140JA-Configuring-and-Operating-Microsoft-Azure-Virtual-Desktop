@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: ホスト プールとセッション ホストを作成および構成する (Azure AD DS)'
     module: 'モジュール 2: AVD インフラストラクチャを実装する'
@@ -52,7 +52,7 @@ Azure Active Directory ドメインサービス (Azure AD DS) 環境でホスト
 
    |設定|値|
    |---|---|
-   |ユーザー名|**Student@adatum.com**|
+   |ユーザー名|**aadadmin1@adatum.com**|
    |パスワード|**Pa55w.rd1234**|
 
 1. リモート デスクトップ内で **az140-cl-vm11a** Azure VM に移動し、Microsoft Edge を起動し、[Azure portal](https://portal.azure.com) に移動します。このアカウントの作成時に設定したパスワードを使用して **aadadmin1** ユーザー アカウントのユーザー プリンシパル名を指定してサインインします。
@@ -92,23 +92,24 @@ Azure Active Directory ドメインサービス (Azure AD DS) 環境でホスト
    |---|---|
    |仮想マシンの追加|**はい**|
    |リソース グループ|**既定はホストプールと同じ**|
+   |名前のプレフィックス|**az140-21-p1**|
    |仮想マシンの場所|このラボの最初の演習でリソースをデプロイした Azure リージョンの名前|
    |可用性オプション|**インフラストラクチャの冗長性は必要ありません**|
    |イメージの種類|**ギャラリー**|
    |イメージ|**Windows 10 Enterprise マルチセッション、バージョン 2004 + Microsoft 365 Apps**|
    |仮想マシンのサイズ|**Standard D2s v3**|
    |VM の数|**2**|
-   |名前のプレフィックス|**az140-21-p1**|
    |OS ディスクの種類|**Standard SSD**|
    |仮想ネットワーク|**az140-aadds-vnet11a**|
    |サブネット|**hp1-Subnet (10.10.1.0/24)**|
    |ネットワーク セキュリティ グループ|**Basic**|
    |パブリック受信ポート|**いいえ**|
+   |参加するディレクトリを選択する|**Active Directory**|
+   |AD ドメインの UPN への参加|**aadadmin1@***<Azure_AD_domain_name>*|
+   |パスワード|aadadmin1 のパスワードを使用する|
    |特定のドメインまたはユニット|**はい**|
    |参加するドメイン|**adatum.com**|
    |組織単位パス|**OU=AADDC Computers,DC=adatum,DC=com**|
-   |AD ドメインの UPN への参加|**aadadmin1@***<Azure_AD_domain_name>*|
-   |パスワード|`<password>`|
    |仮想マシン管理者アカウントのユーザー名|**student**|
    |仮想マシン管理者アカウントのパスワード|**Pa55w.rd1234**|
 

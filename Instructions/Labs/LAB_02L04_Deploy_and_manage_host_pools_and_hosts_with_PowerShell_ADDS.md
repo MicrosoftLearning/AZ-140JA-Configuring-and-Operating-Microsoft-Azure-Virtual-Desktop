@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: PowerShell を使用してホスト プールとホストをデプロイおよび管理する'
     module: 'モジュール 2: WVD インフラストラクチャを実装する'
@@ -142,6 +142,9 @@ Active Directory ドメイン サービス (AD DS) 環境で PowerShell を使�
 #### タスク 3: PowerShell を使用して Windows 10 Enterprise を実行する Azure VM のテンプレートベースのデプロイを実行する
 
 1. ラボ コンピューターから、リモート デスクトップ セッションを **az140-dc-vm11** Azure VM に対して使用して、ラボ ファイル **\\\\AZ-140\\AllFiles\\Labs\\02\\az140-24_azuredeployhp3.json** および **\\\\AZ-140\\AllFiles\\Labs\\02\\az140-24_azuredeployhp3.parameters.json** を **C:\\AllFiles\\Labs\\02** フォルダ－ (必要に応じて作成します) にコピーします。
+
+>**注:** ラボ  コンピューターからネストされた仮想マシンにファイルを取得する際に問題が発生した場合は、ラボ コンピューターの Azure portal で、前のラボで作成した **az140-22-profiles** ファイル共有に 2 つのファイルをアップロードできます。ファイルを共有にアップロードした後、**az140-dc-vm1** に移動し、Azure portal で、そこのファイル共有からファイルをローカルにダウンロードします。
+
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 コンソールで、次のコマンドを実行して、前のタスクで作成したホストプールで Azure Virtual Desktop セッション ホストとして機能する Windows 10 Enterprise (マルチセッション) を実行している Azure VM を展開します。
 
    ```powershell
@@ -183,6 +186,8 @@ Active Directory ドメイン サービス (AD DS) 環境で PowerShell を使�
    $labFilesFolder = 'C:\AllFiles\Labs\02'
    New-Item -ItemType Directory -Path $labFilesFolder
    ```
+
+>**注** [T] 構造を使用して、PowerShell コマンドレットをコピーするように注意してください。場合によっては、コピーされたテキストが正しくない可能性があります。たとえば、$ 記号が 4 桁の数字で表示されている場合などです。コマンドレットを発行する前に、これらを修正する必要があります。「PowerShell ISE **スクリプト**」ペインにコピーし、そこで修正を行ってから、修正されたテキストを強調表示して **F8** (**実行選択**) を押します。
 
 1. **az140-24-p3-0** へのリモート デスクトップ セッション内で、「**管理者: Windows PowerShell ISE**」 スクリプト ペインで、以下を実行して、セッション ホストをホスト プールに追加するために必要な Azure Virtual Desktop エージェントおよびブート ローダー インストーラーをダウンロードします。
 

@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'ラボ: ホスト プールに自動スケールを実装する (AD DS)'
     module: 'モジュール: WVD インフラストラクチャを監視および保守する'
@@ -64,7 +64,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
 
    |設定|値|
    |---|---|
-   |ユーザー名|**受講生**|
+   |ユーザー名|**Student**|
    |パスワード|**Pa55w.rd1234**|
 
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、**Windows PowerShell ISE** を管理者として起動します。
@@ -148,7 +148,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
 1. Azure Automation アカウントの構成を確認するには、**az140-dc-vm11** へのリモート デスクトップ セッション内で、Microsoft Edge を起動して、[Azure portal](https://portal.azure.com) に移動します。プロンプトが表示されたら、このラボで使用しているサブスクリプションで所有者の役割を持つユーザーアカウントの資格情報を使用してサインインします。
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内で、Azure portal を表示している Microsoft Edge ウィンドウで、**Automationアカウント**を検索して選択し、**Automationアカウント** ブレードで、新しくプロビジョニングされたAzure Automation アカウント (名前は **az140-automation-51** プレフィックスで始まる) を表すエントリを選択します。
 1. 「Automation Account」 ブレードの左側の垂直メニューの **「Process Automation」** セクションで、**「Runbooks」** を選択し、Runbook のリストで **WVDAutoScaleRunbookARMBased** Runbook の存在を確認します。
-1. 「Automation Account」 ブレードの左側の垂直メニューの **「アカウント設定」** セクションで、**「アカウントとして実行」** を選択し、右側のアカウントのリストで、**「Azure 実行アカウント」** の横にある **「+ 作成」** をクリックします。
+1. 「Automation Account」ブレードの左側の垂直メニューの「**アカウント設定**」セクションで、「**アカウントとして実行**」を選択し、右側のアカウントのリストで、「**Azure 実行アカウント**」の横にある「**作成**」をクリックします。
 1. **「Azure 実行アカウントの追加」** ブレードで、**「作成」** をクリックし、新しいアカウントが正常に作成されたことを確認します。
 
 #### タスク 3: Azure Logic App を作成する
@@ -277,6 +277,7 @@ Active Directory ドメイン サービス (AD DS) 環境で Azure Virtual Deskt
    | project TimeStampUTC = TimeGenerated, TimeStampLocal = TimeStamp_s, HostPool = hostpoolName_s, LineNumAndMessage = logmessage_s, AADTenantId = TenantId
    ```
 
+   >**注**: 余分なパイプ文字があった場合 (|) カットアンドペースト コンストラクトを使用する場合の 2 行目では、失敗を避けるためにそれを削除します。これは、各クエリに適用できます。
    >**注**: 結果が表示されない場合は、数分待ってからもう一度確認してください。
 
 1. 「クエリ」 ウィンドウで、次のクエリを貼り付け、**「実行」** をクリックして、ターゲット ホスト プールで現在実行中のセッション ホストとアクティブなユーザー セッションの総数を表示します。
