@@ -1,4 +1,4 @@
-﻿---
+---
 lab:
     title: 'ラボ: Azure Virtual Desktop (Azure AD DS) のデプロイの準備'
     module: 'モジュール 1: AVD アーキテクチャを計画する'
