@@ -1,4 +1,4 @@
-﻿---
+---
 lab:
     title: 'ラボ: Azure Resource Manager テンプレートを使用してホスト プールと ホストをデプロイする'
     module: 'モジュール 2: WVD インフラストラクチャを実装する'
