@@ -11,7 +11,7 @@ lab:
 
 - このラボで使用する Azure サブスクリプション。
 - このラボで使用する Azure サブスクリプション内で所有者または共同作成者のロールを持つ Microsoft アカウントまたは Azure AD アカウント、この Azure サブスクリプションに関連付けられた Azure AD テナント内でグローバル管理者ロールを持つMicrosoft アカウントまたは Azure AD アカウント。
-- 実施するラボ - **Azure Virtual Desktop (AD DS) のデプロイを準備する**
+- 実施するラボ  **Azure Virtual Desktop (AD DS) のデプロイを準備する**
 
 ## 推定所要時間
 
