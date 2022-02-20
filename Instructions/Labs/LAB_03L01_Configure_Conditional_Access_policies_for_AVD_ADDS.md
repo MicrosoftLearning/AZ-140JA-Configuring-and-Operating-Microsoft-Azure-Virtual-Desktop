@@ -104,10 +104,11 @@ Azure Active Directory (Azure AD) の条件付きアクセスを使用して、A
    |パスワード|**Pa55w.rd1234**|
 
 1. **az140-dc-vm11** へのリモート デスクトップ セッション内の **「スタート」** メニューで、**「Azure AD Connect」** フォルダーを展開し、**「Azure AD Connect」** を選択します。
-1. **「Microsoft Azure Active Directory Connect」** ウィンドウの **「Azure AD Connect へようこそ」** ページで、**「構成」** を選択します。
-1. **「Microsoft Azure Active Directory Connect」** ウィンドウの **「追加のタスク」** ページで、**「デバイス オプションの構成」** を選択し、**「次へ」** を選択します。
-1. **「Microsoft Azure Active Directory Connect」** ウィンドウの **「概要」** ページで、**ハイブリッド Azure AD の参加**と**デバイスのライトバック**に関する情報を確認し、**「次へ」** を選択します。
-1. **「Microsoft Azure Active Directory Connect」** ウィンドウの **「Azure AD に接続」** ページで、前の演習で作成した **aadsyncuser** ユーザー アカウントの資格情報を使用して認証し、**「次へ」** を選択します。 
+> **注** 同期サービスが実行されていないという失敗エラー ウィンドウが表示された場合は、PowerShell コマンド ウィンドウに移動して、「**Start-Service "ADSync"**」と入力し、手順 4 を再試行してください。
+3. 「**Microsoft Azure Active Directory Connect**」ウィンドウの「**Azure AD Connect へようこそ**」ページで、「**構成**」を選択します。
+4. 「**Microsoft Azure Active Directory Connect**」ウィンドウの「**追加のタスク**」ページで、「**デバイス オプションの構成**」を選択し、「**次へ**」を選択します。
+5. 「**Microsoft Azure Active Directory Connect**」ウィンドウの「**概要**」ページで、**ハイブリッド Azure AD の参加**と**デバイスのライトバック**に関する情報を確認し、「**次へ**」を選択します。
+6. 「**Microsoft Azure Active Directory Connect**」ウィンドウの「**Azure AD に接続**」ページで、前の演習で作成した **aadsyncuser** ユーザー アカウントの資格情報を使用して認証し、「**次へ**」を選択します。  
 
    > **注**: このラボの前半で記録した **aadsyncuser** アカウントの userPrincipalName 属性を指定し、このユーザー アカウントの作成時に設定したパスワードを指定します。 
 
@@ -175,7 +176,7 @@ Azure Active Directory (Azure AD) の条件付きアクセスを使用して、A
 
 1. ラボ コンピューターで、Azure portal を表示している Web ブラウザーで、**「概要」** ブレードに戻り、左側の垂直メニューバーの **「管理」** セクションで、**「ライセンス」** をクリックします。
 1. 「**セキュリティ \| はじめに**」 ブレードの左側の垂直メニューの 「**保護**」 セクションで、「**条件付きアクセス**」 をクリックします。
-1. 「**条件付きアクセス \| ポリシー**」 ブレードで、ツールバーの 「**+ 新しいポリシー**」 をクリックします。 
+1. 「**条件付きアクセス \| ポリシー**」ブレードのツールバーで「**+ 新しいポリシー**」をクリックし、コンテキスト メニューで「**新しいポリシー**」を選択します。
 1. **新規**のブレードで、次の設定を構成します。
 
    - 「**名前**」 テキスト ボックスに「**az140-31-wvdpolicy1**」と入力する
