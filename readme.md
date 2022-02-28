@@ -1,4 +1,12 @@
-﻿# AZ-140: Microsoft Azure Virtual Desktop の構成と運用
+**Important Notice!**
+
+This repo was replaced by a [new repo](https://github.com/MicrosoftLearning/AZ-140-Configuring-and-Operating-Microsoft-Azure-Virtual-Desktop.ja-jp) on 4 February 2022 . We're making this change to improve the localized version of this content and reduce the delta between English and localized content updates. 
+After a short interval, this repo will be archived.
+
+**Contributions**
+
+At this time, we are not accepting external contributions to this repo. If you have suggestions or spot any errors, please create a pull request or report an issue on the [new repo](https://github.com/MicrosoftLearning/AZ-140-Configuring-and-Operating-Microsoft-Azure-Virtual-Desktop.ja-jp).
+# AZ-140: Microsoft Azure Virtual Desktop の構成と運用
 
 - **[最新の学生ハンドブックと AllFiles コンテンツをダウンロードする](../../releases/latest)**
 - **MCT の場合:** - [MCT 向け GitHub ユーザー ガイド](https://microsoftlearning.github.io/MCT-User-Guide-JA/)をご覧ください
