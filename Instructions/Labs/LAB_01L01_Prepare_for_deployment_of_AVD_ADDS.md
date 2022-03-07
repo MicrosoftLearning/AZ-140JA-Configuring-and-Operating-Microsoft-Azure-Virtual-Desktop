@@ -166,7 +166,7 @@ Active Directory ドメイン サービス (AD DS) 環境でのデプロイの�
    $vnet | Set-AzVirtualNetwork
    ```
 
-1. Azure portal の Cloud Shell ペインのツールバーで、「**ファイルのアップロード/ダウンロード**」 アイコンを選択し、ドロップダウン メニューで 「**アップロード**」 を選択し、ファイル **\\\\AZ-140\\AllFiles\\Labs\\01\\az140-11_azuredeploycl11a.json** および **\\\\AZ-140\\AllFiles\\Labs\\01\\az140-11_azuredeploycl11.parameters.json** を Cloud Shell ホーム ディレクトリにアップロードします。
+1. Azure portal の Cloud Shell ペインのツールバーで、「**ファイルのアップロード/ダウンロード**」 アイコンを選択し、ドロップダウン メニューで 「**アップロード**」 を選択し、ファイル **\\\\AZ-140\\AllFiles\\Labs\\01\\az140-11_azuredeploycl11.json** および **\\\\AZ-140\\AllFiles\\Labs\\01\\az140-11_azuredeploycl11.parameters.json** を Cloud Shell ホーム ディレクトリにアップロードします。
 1. Cloud Shell ペインの PowerShell セッションから、次のコマンドを実行して、クライアントとして機能する Windows 10 を実行している Azure VM を新しく作成されたサブネットにデプロイします。
 
    ```powershell
